@@ -1,0 +1,8 @@
+# Book settings
+title: Data Analysis Using py_datatable
+author: Sr.Mallesham Yamulla
+logo: py_datatable_logo.png
+
+latex:
+  latex_documents:
+    targetname: book.tex

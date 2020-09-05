@@ -1,7 +1,6 @@
 - file: intro
-- file: content
+- file: ucases
   sections:
-    - file: markdown
-    - file: notebooks
     - file: Py_Seattle_Bikes_tidy_data_wrangling_pydatatable
+    - file: py_dt_penguins
     - file: SO_faqs

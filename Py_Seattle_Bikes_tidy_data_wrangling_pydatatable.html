@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to Data Wrangling using pydatatable &#8212; Data Wrangling</title>
+    <title>Introduction to Data Wrangling using pydatatable &#8212; (py)datatable cookbook</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -61,7 +61,7 @@
   <img src="_static/py_datatable_logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Data Wrangling</h1>
+  <h1 class="site-logo" id="site-title">(py)datatable cookbook</h1>
   
 </a>
 </div>
@@ -115,12 +115,12 @@
      Data wrangling and modeling on Penguins dataset using pydatatable
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="SO_faqs.html">
-     Frequently Asked Questions
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SO_faqs.html">
+   Frequently Asked Questions
+  </a>
  </li>
 </ul>
 
@@ -263,9 +263,11 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: datatable in /home/ec2-user/anaconda3/lib/python3.8/site-packages (0.10.1)
 Requirement already satisfied: blessed in /home/ec2-user/anaconda3/lib/python3.8/site-packages (from datatable) (1.17.10)
 Requirement already satisfied: typesentry&gt;=0.2.6 in /home/ec2-user/anaconda3/lib/python3.8/site-packages (from datatable) (0.2.7)
-Requirement already satisfied: wcwidth&gt;=0.1.4 in /home/ec2-user/anaconda3/lib/python3.8/site-packages (from blessed-&gt;datatable) (0.2.5)
 Requirement already satisfied: six&gt;=1.9.0 in /home/ec2-user/anaconda3/lib/python3.8/site-packages (from blessed-&gt;datatable) (1.15.0)
-Requirement already satisfied: colorama&gt;=0.3 in /home/ec2-user/anaconda3/lib/python3.8/site-packages (from typesentry&gt;=0.2.6-&gt;datatable) (0.4.3)
+Requirement already satisfied: wcwidth&gt;=0.1.4 in /home/ec2-user/anaconda3/lib/python3.8/site-packages (from blessed-&gt;datatable) (0.2.5)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: colorama&gt;=0.3 in /home/ec2-user/anaconda3/lib/python3.8/site-packages (from typesentry&gt;=0.2.6-&gt;datatable) (0.4.3)
 </pre></div>
 </div>
 </div>
@@ -758,12 +760,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-b86ab0f1d27345a889123a2c57d9e1a1"></div>
+<div id="altair-viz-0ad43fefb8f34eed8f577c5f54c1fd67"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b86ab0f1d27345a889123a2c57d9e1a1") {
-      outputDiv = document.getElementById("altair-viz-b86ab0f1d27345a889123a2c57d9e1a1");
+    if (outputDiv.id !== "altair-viz-0ad43fefb8f34eed8f577c5f54c1fd67") {
+      outputDiv = document.getElementById("altair-viz-0ad43fefb8f34eed8f577c5f54c1fd67");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -833,12 +835,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-5d4bace79b164c6ea4b8f203091fad3c"></div>
+<div id="altair-viz-b23d708d6dd44e2eb131785f98c57fa2"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5d4bace79b164c6ea4b8f203091fad3c") {
-      outputDiv = document.getElementById("altair-viz-5d4bace79b164c6ea4b8f203091fad3c");
+    if (outputDiv.id !== "altair-viz-b23d708d6dd44e2eb131785f98c57fa2") {
+      outputDiv = document.getElementById("altair-viz-b23d708d6dd44e2eb131785f98c57fa2");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -905,12 +907,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-bd03fd85177c47888237ca1bf12d0482"></div>
+<div id="altair-viz-0fc58fb836404bbb96e92ecf544fcdd7"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-bd03fd85177c47888237ca1bf12d0482") {
-      outputDiv = document.getElementById("altair-viz-bd03fd85177c47888237ca1bf12d0482");
+    if (outputDiv.id !== "altair-viz-0fc58fb836404bbb96e92ecf544fcdd7") {
+      outputDiv = document.getElementById("altair-viz-0fc58fb836404bbb96e92ecf544fcdd7");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -971,12 +973,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-286e4d1257b64102a5c81770b27620b9"></div>
+<div id="altair-viz-e934e6154bde40d0ad8ff30c6f9ed5a1"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-286e4d1257b64102a5c81770b27620b9") {
-      outputDiv = document.getElementById("altair-viz-286e4d1257b64102a5c81770b27620b9");
+    if (outputDiv.id !== "altair-viz-e934e6154bde40d0ad8ff30c6f9ed5a1") {
+      outputDiv = document.getElementById("altair-viz-e934e6154bde40d0ad8ff30c6f9ed5a1");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1084,12 +1086,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-e01b948abf8648b1b81e131787d3c0a7"></div>
+<div id="altair-viz-615054e974df4ef091215f8f0815643e"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-e01b948abf8648b1b81e131787d3c0a7") {
-      outputDiv = document.getElementById("altair-viz-e01b948abf8648b1b81e131787d3c0a7");
+    if (outputDiv.id !== "altair-viz-615054e974df4ef091215f8f0815643e") {
+      outputDiv = document.getElementById("altair-viz-615054e974df4ef091215f8f0815643e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1448,12 +1450,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-452730a07c824577a055b73c0ea052fd"></div>
+<div id="altair-viz-b8b18c013d40476681f8ca7a11da63b0"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-452730a07c824577a055b73c0ea052fd") {
-      outputDiv = document.getElementById("altair-viz-452730a07c824577a055b73c0ea052fd");
+    if (outputDiv.id !== "altair-viz-b8b18c013d40476681f8ca7a11da63b0") {
+      outputDiv = document.getElementById("altair-viz-b8b18c013d40476681f8ca7a11da63b0");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1508,12 +1510,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-ae6640b35e094d87a5eb3bbd9878fe3e"></div>
+<div id="altair-viz-ea9647bdd22a4f4993ea1f1ddbb47be2"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ae6640b35e094d87a5eb3bbd9878fe3e") {
-      outputDiv = document.getElementById("altair-viz-ae6640b35e094d87a5eb3bbd9878fe3e");
+    if (outputDiv.id !== "altair-viz-ea9647bdd22a4f4993ea1f1ddbb47be2") {
+      outputDiv = document.getElementById("altair-viz-ea9647bdd22a4f4993ea1f1ddbb47be2");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1620,12 +1622,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-4d5852f8a6a74151b78c6d63bd8c5a52"></div>
+<div id="altair-viz-879e5e6586624f2c843c1f8f8bbd44d8"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-4d5852f8a6a74151b78c6d63bd8c5a52") {
-      outputDiv = document.getElementById("altair-viz-4d5852f8a6a74151b78c6d63bd8c5a52");
+    if (outputDiv.id !== "altair-viz-879e5e6586624f2c843c1f8f8bbd44d8") {
+      outputDiv = document.getElementById("altair-viz-879e5e6586624f2c843c1f8f8bbd44d8");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1708,12 +1710,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-adfbbbe9a6784c3a8697f812e90efa3e"></div>
+<div id="altair-viz-de1d92e328fd4f278aa6e389e2017198"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-adfbbbe9a6784c3a8697f812e90efa3e") {
-      outputDiv = document.getElementById("altair-viz-adfbbbe9a6784c3a8697f812e90efa3e");
+    if (outputDiv.id !== "altair-viz-de1d92e328fd4f278aa6e389e2017198") {
+      outputDiv = document.getElementById("altair-viz-de1d92e328fd4f278aa6e389e2017198");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1821,12 +1823,12 @@ The column - ped_count - is a type of stype.int32
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<div id="altair-viz-0bffa54f1a024d05bd911e918f4ead0c"></div>
+<div id="altair-viz-e8e76c8c5fea456a90a0d01443cdde03"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-0bffa54f1a024d05bd911e918f4ead0c") {
-      outputDiv = document.getElementById("altair-viz-0bffa54f1a024d05bd911e918f4ead0c");
+    if (outputDiv.id !== "altair-viz-e8e76c8c5fea456a90a0d01443cdde03") {
+      outputDiv = document.getElementById("altair-viz-e8e76c8c5fea456a90a0d01443cdde03");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",

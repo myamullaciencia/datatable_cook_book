@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Wrangling using py-datatable &#8212; Data Wrangling</title>
+    <title>Frequently Asked Questions &#8212; Data Wrangling</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -38,7 +38,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Content in Jupyter Book" href="content.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -73,7 +72,7 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="#">
+  <a class="reference internal" href="intro.html">
    Data Wrangling using py-datatable
   </a>
  </li>
@@ -126,7 +125,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/SO_faqs.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -153,7 +152,14 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-sort-a-datatable-frame-column-in-ascending-descending-order">
+   1. How to sort a datatable frame column in ascending/descending order
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -162,27 +168,30 @@
         
               <div>
                 
-  <div class="section" id="data-wrangling-using-py-datatable">
-<h1>Data Wrangling using py-datatable<a class="headerlink" href="#data-wrangling-using-py-datatable" title="Permalink to this headline">¶</a></h1>
-<p>Python datatable module is the right tool for the task. It is a library that implements a wide and growing range of operators for manipulating two-dimensional data frames. It focuses on:</p>
-<ul class="simple">
-<li><p>big data support</p></li>
-<li><p>high performance</p></li>
-<li><p>both in-memory and out-of-memory datasets</p></li>
-<li><p>multi-threaded algorithms.</p></li>
-</ul>
-<p>In addition, datatable strives to achieve good user experience, helpful error messages, and powerful API similar to R data.table’s.</p>
-<p>Here are some other silent features as -</p>
-<ol class="simple">
-<li><p>Concise syntax: fast to type, fast to read</p></li>
-<li><p>Fast speed</p></li>
-<li><p>Memory efficient</p></li>
-<li><p>Careful API lifecycle management</p></li>
-<li><p>Support from H2O’s team and growing community</p></li>
-<li><p>Open sourced project</p></li>
-</ol>
-<p>I’m passionate about</p>
-<div class="toctree-wrapper compound">
+  <div class="section" id="frequently-asked-questions">
+<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-to-sort-a-datatable-frame-column-in-ascending-descending-order">
+<h2>1. How to sort a datatable frame column in ascending/descending order<a class="headerlink" href="#how-to-sort-a-datatable-frame-column-in-ascending-descending-order" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">datatable</span> <span class="k">as</span> <span class="nn">dt</span>                                                                                                                   
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">datatable</span> <span class="kn">import</span> <span class="n">f</span><span class="p">,</span> <span class="n">sort</span>                                                                                                            
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">product</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;apples&quot;</span><span class="p">,</span> <span class="s2">&quot;spam&quot;</span><span class="p">,</span> <span class="s2">&quot;goo&quot;</span><span class="p">,</span> <span class="s2">&quot;bobcat&quot;</span><span class="p">,</span> <span class="s2">&quot;gold&quot;</span><span class="p">],</span>  
+   <span class="o">...</span><span class="p">:</span>                  <span class="n">totals</span><span class="o">=</span><span class="p">[</span><span class="mf">5.4</span><span class="p">,</span> <span class="mf">2.777</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">11.1</span><span class="p">])</span>                                                                                    
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">A</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">sort</span><span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="o">.</span><span class="n">totals</span><span class="p">)]</span>                                                                                                                 
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> 
+   <span class="o">|</span> <span class="n">product</span>  <span class="n">totals</span>
+<span class="o">--</span> <span class="o">+</span> <span class="o">-------</span>  <span class="o">------</span>
+ <span class="mi">0</span> <span class="o">|</span> <span class="n">gold</span>     <span class="mf">11.1</span>  
+ <span class="mi">1</span> <span class="o">|</span> <span class="n">apples</span>    <span class="mf">5.4</span>  
+ <span class="mi">2</span> <span class="o">|</span> <span class="n">bobcat</span>    <span class="mf">2.9</span>  
+ <span class="mi">3</span> <span class="o">|</span> <span class="n">spam</span>      <span class="mf">2.777</span>
+ <span class="mi">4</span> <span class="o">|</span> <span class="n">goo</span>       <span class="mf">0.1</span>  
+
+<span class="p">[</span><span class="mi">5</span> <span class="n">rows</span> <span class="n">x</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -214,7 +223,6 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="content.html" title="next page">Content in Jupyter Book</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

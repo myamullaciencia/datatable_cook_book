@@ -3,4 +3,7 @@
   sections:
     - file: Py_Seattle_Bikes_tidy_data_wrangling_pydatatable
     - file: py_dt_penguins
-    - file: SO_faqs
+    
+- file: SO_faqs
+  sections:
+    - file : py_datatable_faqs_so

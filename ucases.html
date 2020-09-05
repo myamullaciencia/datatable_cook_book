@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search &#8212; Data Wrangling</title>
+    <title>Exploratory Data Analysis &#8212; Data Wrangling</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -16,7 +16,6 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
-    
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
@@ -37,15 +36,13 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="_static/searchtools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
-  <script src="searchindex.js" defer></script>
-  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to Data Wrangling using pydatatable" href="Py_Seattle_Bikes_tidy_data_wrangling_pydatatable.html" />
+    <link rel="prev" title="Data Wrangling using py-datatable" href="intro.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
-
 
 
 
@@ -69,7 +66,7 @@
 </a>
 </div>
 
-<form class="bd-search d-flex align-items-center" action="#" method="get">
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
@@ -82,11 +79,48 @@
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="ucases.html">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Exploratory Data Analysis
   </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Py_Seattle_Bikes_tidy_data_wrangling_pydatatable.html">
+     Introduction to Data Wrangling using pydatatable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Py_Seattle_Bikes_tidy_data_wrangling_pydatatable.html#objective">
+     1. Objective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Py_Seattle_Bikes_tidy_data_wrangling_pydatatable.html#introduction-to-pydatatable">
+     2. Introduction to pydatatable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Py_Seattle_Bikes_tidy_data_wrangling_pydatatable.html#exploratory-data-analysis-on-seattle-bike-traffic-data">
+     3. Exploratory Data Analysis on Seattle Bike traffic data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Py_Seattle_Bikes_tidy_data_wrangling_pydatatable.html#references-and-recommendations">
+     4. References and Recommendations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="py_dt_penguins.html">
+     Data wrangling and modeling on Penguins dataset using pydatatable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="SO_faqs.html">
+     Frequently Asked Questions
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -126,6 +160,18 @@
             class="fas fa-download"></i></button>
 
     
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ucases.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
 </div>
         <!-- Source interaction buttons -->
 
@@ -141,6 +187,9 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
         <nav id="bd-toc-nav">
             
         </nav>
@@ -151,27 +200,31 @@
         
               <div>
                 
-  <h1 id="search-documentation">Search</h1>
-  <div id="fallback" class="admonition warning">
-  <script>$('#fallback').hide();</script>
-  <p>
-    Please activate JavaScript to enable the search
-    functionality.
-  </p>
-  </div>
-  <p>
-    Searching for multiple words only shows matches that contain
-    all words.
-  </p>
-  <form action="" method="get">
-    <input type="text" name="q" aria-labelledby="search-documentation" value="" />
-    <input type="submit" value="search" />
-    <span id="search-progress" style="padding-left: 10px"></span>
-  </form>
-  
-  <div id="search-results">
-  
-  </div>
+  <div class="section" id="exploratory-data-analysis">
+<h1>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -181,6 +234,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Data Wrangling using py-datatable</a>
+    <a class='right-next' id="next-link" href="Py_Seattle_Bikes_tidy_data_wrangling_pydatatable.html" title="next page">Introduction to Data Wrangling using pydatatable</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

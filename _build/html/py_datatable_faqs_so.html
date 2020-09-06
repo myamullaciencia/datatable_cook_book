@@ -218,6 +218,21 @@
      1.5 How do deselect columns from dataframe?
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-remove-a-list-of-columns-from-dataframe">
+     1.6 How to remove a list of columns from dataframe?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-filter-na-s-from-dataframe">
+     1.7 How to filter NA’s from dataframe ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-modify-or-update-column-values-on-a-condition">
+     1.8 How to modify or update column values on a condition?
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -728,7 +743,17 @@
 <p>That is OK, you have noticed or tried converting a column from string to any other types <strong>(int,float,bool)</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#sales_DT[&#39;profit_perc&#39;] = float</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">24</span><span class="o">-</span><span class="mi">8</span><span class="n">ac3eb52bc29</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+
+<span class="ne">NotImplementedError</span>: Unable to cast `str32` into `float64`
 </pre></div>
 </div>
 </div>
@@ -967,6 +992,481 @@
   </table>
   <div class='footer'>
     <div class='frame_dimensions'>32,833 rows &times; 13 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="section" id="how-to-remove-a-list-of-columns-from-dataframe">
+<h3>1.6 How to remove a list of columns from dataframe?<a class="headerlink" href="#how-to-remove-a-list-of-columns-from-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>We already learnt how to deselect a list of columns, but here we are now going to see how to remove a list of columns from dataframe. and the below is the sytax for it.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>        del DT[:,columns to be removed]
+</pre></div>
+</div>
+<p>Let us create a sample dataframe as -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comidas_gen_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">({</span>
+    <span class="s1">&#39;country&#39;</span><span class="p">:</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCDE&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;egg&#39;</span><span class="p">:[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">40</span><span class="p">],</span>
+    <span class="s1">&#39;veg&#39;</span><span class="p">:[</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;fork&#39;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+    <span class="s1">&#39;beef&#39;</span><span class="p">:[</span><span class="mi">90</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="mi">4</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comidas_gen_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>country</th><th>id</th><th>egg</th><th>veg</th><th>fork</th><th>beef</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>A</td><td>1</td><td>10</td><td>30</td><td>5</td><td>90</td></tr>
+    <tr><td class='row_index'>1</td><td>B</td><td>2</td><td>20</td><td>40</td><td>10</td><td>50</td></tr>
+    <tr><td class='row_index'>2</td><td>C</td><td>3</td><td>30</td><td>10</td><td>2</td><td>20</td></tr>
+    <tr><td class='row_index'>3</td><td>D</td><td>4</td><td>5</td><td>3</td><td>1</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>4</td><td>E</td><td>5</td><td>40</td><td>5</td><td>9</td><td>4</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 6 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>I would like to remove a column id from this dataframe following the above syntax -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">comidas_gen_dt</span><span class="p">[:,</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comidas_gen_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>country</th><th>egg</th><th>veg</th><th>fork</th><th>beef</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>A</td><td>10</td><td>30</td><td>5</td><td>90</td></tr>
+    <tr><td class='row_index'>1</td><td>B</td><td>20</td><td>40</td><td>10</td><td>50</td></tr>
+    <tr><td class='row_index'>2</td><td>C</td><td>30</td><td>10</td><td>2</td><td>20</td></tr>
+    <tr><td class='row_index'>3</td><td>D</td><td>5</td><td>3</td><td>1</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>4</td><td>E</td><td>40</td><td>5</td><td>9</td><td>4</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 5 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>we noticed that the column id is no more existed in comidas dataframe, and if we want to remove more than one column their names should be passed in a list type as below-</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">comidas_gen_dt</span><span class="p">[:,[</span><span class="s2">&quot;veg&quot;</span><span class="p">,</span><span class="s2">&quot;beef&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comidas_gen_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>country</th><th>egg</th><th>fork</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>A</td><td>10</td><td>5</td></tr>
+    <tr><td class='row_index'>1</td><td>B</td><td>20</td><td>10</td></tr>
+    <tr><td class='row_index'>2</td><td>C</td><td>30</td><td>2</td></tr>
+    <tr><td class='row_index'>3</td><td>D</td><td>5</td><td>1</td></tr>
+    <tr><td class='row_index'>4</td><td>E</td><td>40</td><td>9</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 3 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>We are just left with 3 columns and i’m making a copy of this dataframe as -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_comidas</span> <span class="o">=</span> <span class="n">comidas_gen_dt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>DT_comidas is an independent from the comidas_gen_dt dataframe, means whatever the changes we make on comidas_get_dt those will not be replicated on DT_comidas and let us see how it is worked out.</p>
+<p>From dataframe comidas_gen_gt we are going to remove a column fork as -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">comidas_gen_dt</span><span class="p">[:,</span><span class="s2">&quot;fork&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comidas_gen_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>country</th><th>egg</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>A</td><td>10</td></tr>
+    <tr><td class='row_index'>1</td><td>B</td><td>20</td></tr>
+    <tr><td class='row_index'>2</td><td>C</td><td>30</td></tr>
+    <tr><td class='row_index'>3</td><td>D</td><td>5</td></tr>
+    <tr><td class='row_index'>4</td><td>E</td><td>40</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_comidas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>country</th><th>egg</th><th>fork</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>A</td><td>10</td><td>5</td></tr>
+    <tr><td class='row_index'>1</td><td>B</td><td>20</td><td>10</td></tr>
+    <tr><td class='row_index'>2</td><td>C</td><td>30</td><td>2</td></tr>
+    <tr><td class='row_index'>3</td><td>D</td><td>5</td><td>1</td></tr>
+    <tr><td class='row_index'>4</td><td>E</td><td>40</td><td>9</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 3 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>Fork column is still available in DT_comidas and it is removed from comidas_gen_dt.</p>
+</div>
+<div class="section" id="how-to-filter-na-s-from-dataframe">
+<h3>1.7 How to filter NA’s from dataframe ?<a class="headerlink" href="#how-to-filter-na-s-from-dataframe" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">       id|charges|payment_method</span>
+<span class="s2">       634-VHG|28|Cheque</span>
+<span class="s2">       365-DQC|33.5|Credit card</span>
+<span class="s2">       264-PPR|631|--</span>
+<span class="s2">       845-AJO|42.3|--</span>
+<span class="s2">       769-LPO|56.9|Gpay</span>
+<span class="s2">       529-GPO|56.9|--</span>
+<span class="s2">       903-QPO|--|--</span>
+<span class="s2">       234-CPO|89.9|Bank Transfer</span>
+<span class="s2">       102-PPO|26.9|Cash</span>
+<span class="s2">       303-LPO|16.9|--</span>
+<span class="s2">       692-CPO|--|PhonePay</span>
+<span class="s2">       &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">fread</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span><span class="n">na_strings</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;--&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will have a sample dataframe for this case as below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td></tr>
+    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td></tr>
+    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
+    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>6</td><td>903-QPO</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
+    <tr><td class='row_index'>8</td><td>102-PPO</td><td>26.9</td><td>Cash</td></tr>
+    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>10</td><td>692-CPO</td><td><span class=na>NA</span></td><td>PhonePay</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>11 rows &times; 3 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>We have a function called <strong>countna</strong> from datatable, on applying it on dataframe it will count how many of NA’s are in each column and returns a dataframe as below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="o">.</span><span class="n">countna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>0</td><td>2</td><td>5</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>1 row &times; 3 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>Here we have 2 NA’s in charges column and 5 NA’s in payment method.</p>
+<p>As per the Datatable sytax we have a filter option I position as,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                       DT[I,:]
+</pre></div>
+</div>
+<p>We can now call a function called <strong>isna</strong> from datatable, pass a column name whose NA’s should be checked. For example we would like to filter NAs for a column charges as follows -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">),:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>903-QPO</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>1</td><td>692-CPO</td><td><span class=na>NA</span></td><td>PhonePay</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>2 rows &times; 3 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>What if we would like to not to include NA’s observations per a column charges, and it can be done as follows- here we have just append that isna function with a symbol (~).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="o">~</span><span class="n">dt</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">),:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td></tr>
+    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td></tr>
+    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
+    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>6</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
+    <tr><td class='row_index'>7</td><td>102-PPO</td><td>26.9</td><td>Cash</td></tr>
+    <tr><td class='row_index'>8</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>9 rows &times; 3 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>We could also use the <strong>isna</strong> in by position to count how many of observations are having NA’s per in specified column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[:,</span><span class="n">count</span><span class="p">(),</span><span class="n">by</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">payment_method</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>payment_method</th><th>count</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='boolean' title='bool8'>&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>0</td><td>6</td></tr>
+    <tr><td class='row_index'>1</td><td>1</td><td>5</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>2 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>We have observed that there are 5 NA’s and 6 observations are having the values.</p>
+<p>There are some cases where we have to see two or more observations are together having the NA’s. for example we can check for NA’s across payment method and charges as below. we have made use of some logical operations and will be discussed when a case comes in. for now you can just remember this syntax.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[:,</span><span class="n">count</span><span class="p">(),</span><span class="n">by</span><span class="p">((</span><span class="n">dt</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">payment_method</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">)))]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>C0</th><th>count</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='boolean' title='bool8'>&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>0</td><td>10</td></tr>
+    <tr><td class='row_index'>1</td><td>1</td><td>1</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>2 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>Here we can see that there is only one observation having NA’s for both of these columns.</p>
+</div>
+<div class="section" id="how-to-modify-or-update-column-values-on-a-condition">
+<h3>1.8 How to modify or update column values on a condition?<a class="headerlink" href="#how-to-modify-or-update-column-values-on-a-condition" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">),</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">]</span><span class="o">=</span><span class="mf">20.45</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td></tr>
+    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td></tr>
+    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
+    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
+    <tr><td class='row_index'>8</td><td>102-PPO</td><td>26.9</td><td>Cash</td></tr>
+    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>11 rows &times; 3 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">id</span><span class="o">==</span><span class="s2">&quot;102-PPO&quot;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;103-PPO&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td></tr>
+    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td></tr>
+    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
+    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
+    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td></tr>
+    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>11 rows &times; 3 columns</div>
   </div>
 </div>
 </div></div>

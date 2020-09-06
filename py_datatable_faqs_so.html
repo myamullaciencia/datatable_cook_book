@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>py_datatable wiki &#8212; (py)datatable cookbook</title>
+    <title>py_datatable Q &amp; A Notebook &#8212; (py)datatable cookbook</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -91,7 +91,7 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     py_datatable wiki
+     py_datatable Q &amp; A Notebook
     </a>
    </li>
   </ul>
@@ -208,6 +208,16 @@
      1.3 How to type cast a dataframe column in pydatatable?
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-select-columns-based-on-their-data-types">
+     1.4 How to select columns based on their data types?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-do-deselect-columns-from-dataframe">
+     1.5 How do deselect columns from dataframe?
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -220,14 +230,16 @@
         
               <div>
                 
-  <div class="section" id="py-datatable-wiki">
-<h1>py_datatable wiki<a class="headerlink" href="#py-datatable-wiki" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="py-datatable-q-a-notebook">
+<h1>py_datatable Q &amp; A Notebook<a class="headerlink" href="#py-datatable-q-a-notebook" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing the necessary libraries</span>
 <span class="kn">import</span> <span class="nn">datatable</span> <span class="k">as</span> <span class="nn">dt</span>
 <span class="kn">from</span> <span class="nn">datatable</span> <span class="kn">import</span> <span class="n">f</span><span class="p">,</span><span class="n">by</span><span class="p">,</span><span class="n">count</span><span class="p">,</span><span class="nb">sum</span><span class="p">,</span><span class="n">update</span><span class="p">,</span><span class="n">sort</span>
 <span class="n">dt</span><span class="o">.</span><span class="n">init_styles</span><span class="p">()</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">head_nrows</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">tail_nrows</span><span class="o">=</span><span class="mi">4</span>
 </pre></div>
 </div>
 </div>
@@ -590,7 +602,7 @@
 </div>
 <div class="section" id="how-to-type-cast-a-dataframe-column-in-pydatatable">
 <h3>1.3 How to type cast a dataframe column in pydatatable?<a class="headerlink" href="#how-to-type-cast-a-dataframe-column-in-pydatatable" title="Permalink to this headline">¶</a></h3>
-<p>We will create a dataframe with three columns such as cust_id,sales,profit_perc.</p>
+<p>We will create a dataframe with four columns such as cust_id,sales,profit_perc, and default</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span>
@@ -626,9 +638,10 @@
 <li><p>cust_id is a type of float but in general customer id should be eigther integer or string type</p></li>
 <li><p>sales is a type of int, it should not always be an integer and it may also be in float types</p></li>
 <li><p>profict_perc is a type of string, here it should be a float type</p></li>
+<li><p>default is a type of int and it should be a bool</p></li>
 </ul>
-<p><strong>Note:</strong> We have a syntax to be followed when we are to converting a column datatype from one to another as below</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                                            DT[&#39;Column_name&#39;]= new data type (int,floar,str etc etc)
+<p><strong>Note</strong> : We have a syntax to be followed when we are to converting a column datatype from one to another as below</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                       DT[&#39;Column_name&#39;]= new data type (int,floar,str,bool)
 </pre></div>
 </div>
 <p>First, we will now try to apply the above formula on conveting a column type from float(<strong>cust_id</strong>) to integer</p>
@@ -715,22 +728,249 @@
 <p>That is OK, you have noticed or tried converting a column from string to any other types <strong>(int,float,bool)</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#sales_DT[&#39;profit_perc&#39;] = float</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong> : String to other type converions are not yet implemented in datatable versions till 0.10.1 and they would be surely implemented in the upcoming versions.</p>
+</div>
+<div class="section" id="how-to-select-columns-based-on-their-data-types">
+<h3>1.4 How to select columns based on their data types?<a class="headerlink" href="#how-to-select-columns-based-on-their-data-types" title="Permalink to this headline">¶</a></h3>
+<p>We will import a data from a specified URL source for this example as-</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">fread</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Datafram dimensions(rows,columns) can be checked as below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">24</span><span class="o">-</span><span class="mi">8</span><span class="n">ac3eb52bc29</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
-
-<span class="ne">NotImplementedError</span>: Unable to cast `str32` into `float64`
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(32833, 23)
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Note:</strong> String to other type converions are not yet implemented in datatable versions till 0.10.1 and they would be surely implemented in the upcoming versions.</p>
+<p>Spotify dataframe has come with about 32K observations and 23 columns and the columns types can be viewed as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span><span class="o">.</span><span class="n">stypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(stype.str32,
+ stype.str32,
+ stype.str32,
+ stype.int32,
+ stype.str32,
+ stype.str32,
+ stype.str32,
+ stype.str32,
+ stype.str32,
+ stype.str32,
+ stype.str32,
+ stype.float64,
+ stype.float64,
+ stype.int32,
+ stype.float64,
+ stype.bool8,
+ stype.float64,
+ stype.float64,
+ stype.float64,
+ stype.float64,
+ stype.float64,
+ stype.float64,
+ stype.int32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We would just like to take a look at the fields which are an any  type of ( int or string or bool or float ) etc etc. let us understand how it can be achived in py-datatable. we are already familiarized with datatable I,J sytax style as below. In J would always be made use to select the columns based  on given names or indices etc etc.. The required datatypes should be entered in the J expression so that it will display the respective observations.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                            DT[:,J]
+</pre></div>
+</div>
+<p>Well, In a first attempt let us retrive the observations for all the interger columns as -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span><span class="p">[:,</span><span class="n">dt</span><span class="o">.</span><span class="n">int32</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>track_popularity</th><th>key</th><th>duration_ms</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>66</td><td>6</td><td>194754</td></tr>
+    <tr><td class='row_index'>1</td><td>67</td><td>11</td><td>162600</td></tr>
+    <tr><td class='row_index'>2</td><td>70</td><td>1</td><td>176616</td></tr>
+    <tr><td class='row_index'>3</td><td>60</td><td>7</td><td>169093</td></tr>
+    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
+    <tr><td class='row_index'>32,829</td><td>20</td><td>0</td><td>353120</td></tr>
+    <tr><td class='row_index'>32,830</td><td>14</td><td>6</td><td>210112</td></tr>
+    <tr><td class='row_index'>32,831</td><td>15</td><td>2</td><td>367432</td></tr>
+    <tr><td class='row_index'>32,832</td><td>27</td><td>5</td><td>337500</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>32,833 rows &times; 3 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>In a second attempt, we would like to see both float and bool type columns, and the below is the solution for it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span><span class="p">[:,[</span><span class="n">dt</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span><span class="n">dt</span><span class="o">.</span><span class="n">bool8</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>danceability</th><th>energy</th><th>loudness</th><th>speechiness</th><th>acousticness</th><th>instrumentalness</th><th>liveness</th><th>valence</th><th>tempo</th><th>mode</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>0.748</td><td>0.916</td><td>&minus;2.634</td><td>0.0583</td><td>0.102</td><td>0</td><td>0.0653</td><td>0.518</td><td>122.036</td><td>1</td></tr>
+    <tr><td class='row_index'>1</td><td>0.726</td><td>0.815</td><td>&minus;4.969</td><td>0.0373</td><td>0.0724</td><td>0.00421</td><td>0.357</td><td>0.693</td><td>99.972</td><td>1</td></tr>
+    <tr><td class='row_index'>2</td><td>0.675</td><td>0.931</td><td>&minus;3.432</td><td>0.0742</td><td>0.0794</td><td>2.33e-05</td><td>0.11</td><td>0.613</td><td>124.008</td><td>0</td></tr>
+    <tr><td class='row_index'>3</td><td>0.718</td><td>0.93</td><td>&minus;3.778</td><td>0.102</td><td>0.0287</td><td>9.43e-06</td><td>0.204</td><td>0.277</td><td>121.956</td><td>1</td></tr>
+    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
+    <tr><td class='row_index'>32,829</td><td>0.522</td><td>0.786</td><td>&minus;4.462</td><td>0.042</td><td>0.00171</td><td>0.00427</td><td>0.375</td><td>0.4</td><td>128.041</td><td>1</td></tr>
+    <tr><td class='row_index'>32,830</td><td>0.529</td><td>0.821</td><td>&minus;4.899</td><td>0.0481</td><td>0.108</td><td>1.11e-06</td><td>0.15</td><td>0.436</td><td>127.989</td><td>0</td></tr>
+    <tr><td class='row_index'>32,831</td><td>0.626</td><td>0.888</td><td>&minus;3.361</td><td>0.109</td><td>0.00792</td><td>0.127</td><td>0.343</td><td>0.308</td><td>128.008</td><td>1</td></tr>
+    <tr><td class='row_index'>32,832</td><td>0.603</td><td>0.884</td><td>&minus;4.571</td><td>0.0385</td><td>0.000133</td><td>0.341</td><td>0.742</td><td>0.0894</td><td>127.984</td><td>0</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>32,833 rows &times; 10 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>So here we have learnt that if more than one type of columns are required to be selected the types should be passed in J expression using a list i.e [dt.int32,dt.str32,dt.bool8]</p>
+<p><strong>Note</strong> : In above two cases we have limited the output observations for 5 only.</p>
+</div>
+<div class="section" id="how-do-deselect-columns-from-dataframe">
+<h3>1.5 How do deselect columns from dataframe?<a class="headerlink" href="#how-do-deselect-columns-from-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>Deselecting the columns from dataframe is as important as selecting the columns. Deselection of columns can be done in J position itself specifying a function called <strong>removed</strong> along with the f expressions. let us look at the syntax first.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>            DT[:,f[:].remove(cols to be kept a side)]
+</pre></div>
+</div>
+<p>Here is our first example - deselect a column track_id from the spotify dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span><span class="p">[:,</span><span class="n">f</span><span class="p">[:]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">track_id</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>track_name</th><th>track_artist</th><th>track_popularity</th><th>track_album_id</th><th>track_album_name</th><th>track_album_release_date</th><th>playlist_name</th><th>playlist_id</th><th>playlist_genre</th><th>playlist_subgenre</th><th class='vellipsis'>&hellip;</th><th>instrumentalness</th><th>liveness</th><th>valence</th><th>tempo</th><th>duration_ms</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td></td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>I Don't Care (with Justin Bieber) - Loud Luxury Re&#133;</td><td>Ed Sheeran</td><td>66</td><td>2oCs0DGTsRO98Gh5ZSl2Cx</td><td>I Don't Care (with Justin Bieber) [Loud Luxury Rem&#133;</td><td>2019-06-14</td><td>Pop Remix</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>pop</td><td>dance pop</td><td class=vellipsis>&hellip;</td><td>0</td><td>0.0653</td><td>0.518</td><td>122.036</td><td>194754</td></tr>
+    <tr><td class='row_index'>1</td><td>Memories - Dillon Francis Remix</td><td>Maroon 5</td><td>67</td><td>63rPSO264uRjW1X5E6cWv6</td><td>Memories (Dillon Francis Remix)</td><td>2019-12-13</td><td>Pop Remix</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>pop</td><td>dance pop</td><td class=vellipsis>&hellip;</td><td>0.00421</td><td>0.357</td><td>0.693</td><td>99.972</td><td>162600</td></tr>
+    <tr><td class='row_index'>2</td><td>All the Time - Don Diablo Remix</td><td>Zara Larsson</td><td>70</td><td>1HoSmj2eLcsrR0vE9gThr4</td><td>All the Time (Don Diablo Remix)</td><td>2019-07-05</td><td>Pop Remix</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>pop</td><td>dance pop</td><td class=vellipsis>&hellip;</td><td>2.33e-05</td><td>0.11</td><td>0.613</td><td>124.008</td><td>176616</td></tr>
+    <tr><td class='row_index'>3</td><td>Call You Mine - Keanu Silva Remix</td><td>The Chainsmokers</td><td>60</td><td>1nqYsOef1yKKuGOVchbsk6</td><td>Call You Mine - The Remixes</td><td>2019-07-19</td><td>Pop Remix</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>pop</td><td>dance pop</td><td class=vellipsis>&hellip;</td><td>9.43e-06</td><td>0.204</td><td>0.277</td><td>121.956</td><td>169093</td></tr>
+    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22F1;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
+    <tr><td class='row_index'>32,829</td><td>Closer - Sultan &amp; Ned Shepard Remix</td><td>Tegan and Sara</td><td>20</td><td>6kD6KLxj7s8eCE3ABvAyf5</td><td>Closer Remixed</td><td>2013-03-08</td><td>♥ EDM LOVE 2020</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>edm</td><td>progressive electro house</td><td class=vellipsis>&hellip;</td><td>0.00427</td><td>0.375</td><td>0.4</td><td>128.041</td><td>353120</td></tr>
+    <tr><td class='row_index'>32,830</td><td>Sweet Surrender - Radio Edit</td><td>Starkillers</td><td>14</td><td>0ltWNSY9JgxoIZO4VzuCa6</td><td>Sweet Surrender (Radio Edit)</td><td>2014-04-21</td><td>♥ EDM LOVE 2020</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>edm</td><td>progressive electro house</td><td class=vellipsis>&hellip;</td><td>1.11e-06</td><td>0.15</td><td>0.436</td><td>127.989</td><td>210112</td></tr>
+    <tr><td class='row_index'>32,831</td><td>Only For You - Maor Levi Remix</td><td>Mat Zo</td><td>15</td><td>1fGrOkHnHJcStl14zNx8Jy</td><td>Only For You (Remixes)</td><td>2014-01-01</td><td>♥ EDM LOVE 2020</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>edm</td><td>progressive electro house</td><td class=vellipsis>&hellip;</td><td>0.127</td><td>0.343</td><td>0.308</td><td>128.008</td><td>367432</td></tr>
+    <tr><td class='row_index'>32,832</td><td>Typhoon - Original Mix</td><td>Julian Calor</td><td>27</td><td>0X3mUOm6MhxR7PzxG95rAo</td><td>Typhoon/Storm</td><td>2014-03-03</td><td>♥ EDM LOVE 2020</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>edm</td><td>progressive electro house</td><td class=vellipsis>&hellip;</td><td>0.341</td><td>0.742</td><td>0.0894</td><td>127.984</td><td>337500</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>32,833 rows &times; 22 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>In a second case - deselect these four columns(track_album_id,track_album_name,playlist_name,playlist_genre) from spotify dataframe -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span><span class="p">[:,</span><span class="n">f</span><span class="p">[:]</span><span class="o">.</span><span class="n">remove</span><span class="p">([</span><span class="n">f</span><span class="o">.</span><span class="n">track_album_id</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">track_album_name</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">playlist_name</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">playlist_genre</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>track_id</th><th>track_name</th><th>track_artist</th><th>track_popularity</th><th>track_album_release_date</th><th>playlist_id</th><th>playlist_subgenre</th><th>danceability</th><th>energy</th><th>key</th><th class='vellipsis'>&hellip;</th><th>instrumentalness</th><th>liveness</th><th>valence</th><th>tempo</th><th>duration_ms</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td></td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>6f807x0ima9a1j3VPbc7VN</td><td>I Don't Care (with Justin Bieber) - Loud Luxury Re&#133;</td><td>Ed Sheeran</td><td>66</td><td>2019-06-14</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>dance pop</td><td>0.748</td><td>0.916</td><td>6</td><td class=vellipsis>&hellip;</td><td>0</td><td>0.0653</td><td>0.518</td><td>122.036</td><td>194754</td></tr>
+    <tr><td class='row_index'>1</td><td>0r7CVbZTWZgbTCYdfa2P31</td><td>Memories - Dillon Francis Remix</td><td>Maroon 5</td><td>67</td><td>2019-12-13</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>dance pop</td><td>0.726</td><td>0.815</td><td>11</td><td class=vellipsis>&hellip;</td><td>0.00421</td><td>0.357</td><td>0.693</td><td>99.972</td><td>162600</td></tr>
+    <tr><td class='row_index'>2</td><td>1z1Hg7Vb0AhHDiEmnDE79l</td><td>All the Time - Don Diablo Remix</td><td>Zara Larsson</td><td>70</td><td>2019-07-05</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>dance pop</td><td>0.675</td><td>0.931</td><td>1</td><td class=vellipsis>&hellip;</td><td>2.33e-05</td><td>0.11</td><td>0.613</td><td>124.008</td><td>176616</td></tr>
+    <tr><td class='row_index'>3</td><td>75FpbthrwQmzHlBJLuGdC7</td><td>Call You Mine - Keanu Silva Remix</td><td>The Chainsmokers</td><td>60</td><td>2019-07-19</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>dance pop</td><td>0.718</td><td>0.93</td><td>7</td><td class=vellipsis>&hellip;</td><td>9.43e-06</td><td>0.204</td><td>0.277</td><td>121.956</td><td>169093</td></tr>
+    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22F1;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
+    <tr><td class='row_index'>32,829</td><td>5Aevni09Em4575077nkWHz</td><td>Closer - Sultan &amp; Ned Shepard Remix</td><td>Tegan and Sara</td><td>20</td><td>2013-03-08</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>progressive electro house</td><td>0.522</td><td>0.786</td><td>0</td><td class=vellipsis>&hellip;</td><td>0.00427</td><td>0.375</td><td>0.4</td><td>128.041</td><td>353120</td></tr>
+    <tr><td class='row_index'>32,830</td><td>7ImMqPP3Q1yfUHvsdn7wEo</td><td>Sweet Surrender - Radio Edit</td><td>Starkillers</td><td>14</td><td>2014-04-21</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>progressive electro house</td><td>0.529</td><td>0.821</td><td>6</td><td class=vellipsis>&hellip;</td><td>1.11e-06</td><td>0.15</td><td>0.436</td><td>127.989</td><td>210112</td></tr>
+    <tr><td class='row_index'>32,831</td><td>2m69mhnfQ1Oq6lGtXuYhgX</td><td>Only For You - Maor Levi Remix</td><td>Mat Zo</td><td>15</td><td>2014-01-01</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>progressive electro house</td><td>0.626</td><td>0.888</td><td>2</td><td class=vellipsis>&hellip;</td><td>0.127</td><td>0.343</td><td>0.308</td><td>128.008</td><td>367432</td></tr>
+    <tr><td class='row_index'>32,832</td><td>29zWqhca3zt5NsckZqDf6c</td><td>Typhoon - Original Mix</td><td>Julian Calor</td><td>27</td><td>2014-03-03</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>progressive electro house</td><td>0.603</td><td>0.884</td><td>5</td><td class=vellipsis>&hellip;</td><td>0.341</td><td>0.742</td><td>0.0894</td><td>127.984</td><td>337500</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>32,833 rows &times; 19 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>Here we have given a column names in a list and let us understand the anotomy of this syntax.</p>
+<ul class="simple">
+<li><p>f[:]: it selects all the columns</p></li>
+<li><p>f[:].remove([f.x,f.y,f.z]) will deselect these three columns from others</p></li>
+</ul>
+<p>What if our requirement is based on a type of column, of course it can also be achived with the same syntax as follows. and here we are deselecting all the string type columns from spotify dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span><span class="p">[:,</span><span class="n">f</span><span class="p">[:]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">str32</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>track_popularity</th><th>danceability</th><th>energy</th><th>key</th><th>loudness</th><th>mode</th><th>speechiness</th><th>acousticness</th><th>instrumentalness</th><th>liveness</th><th>valence</th><th>tempo</th><th>duration_ms</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>66</td><td>0.748</td><td>0.916</td><td>6</td><td>&minus;2.634</td><td>1</td><td>0.0583</td><td>0.102</td><td>0</td><td>0.0653</td><td>0.518</td><td>122.036</td><td>194754</td></tr>
+    <tr><td class='row_index'>1</td><td>67</td><td>0.726</td><td>0.815</td><td>11</td><td>&minus;4.969</td><td>1</td><td>0.0373</td><td>0.0724</td><td>0.00421</td><td>0.357</td><td>0.693</td><td>99.972</td><td>162600</td></tr>
+    <tr><td class='row_index'>2</td><td>70</td><td>0.675</td><td>0.931</td><td>1</td><td>&minus;3.432</td><td>0</td><td>0.0742</td><td>0.0794</td><td>2.33e-05</td><td>0.11</td><td>0.613</td><td>124.008</td><td>176616</td></tr>
+    <tr><td class='row_index'>3</td><td>60</td><td>0.718</td><td>0.93</td><td>7</td><td>&minus;3.778</td><td>1</td><td>0.102</td><td>0.0287</td><td>9.43e-06</td><td>0.204</td><td>0.277</td><td>121.956</td><td>169093</td></tr>
+    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
+    <tr><td class='row_index'>32,829</td><td>20</td><td>0.522</td><td>0.786</td><td>0</td><td>&minus;4.462</td><td>1</td><td>0.042</td><td>0.00171</td><td>0.00427</td><td>0.375</td><td>0.4</td><td>128.041</td><td>353120</td></tr>
+    <tr><td class='row_index'>32,830</td><td>14</td><td>0.529</td><td>0.821</td><td>6</td><td>&minus;4.899</td><td>0</td><td>0.0481</td><td>0.108</td><td>1.11e-06</td><td>0.15</td><td>0.436</td><td>127.989</td><td>210112</td></tr>
+    <tr><td class='row_index'>32,831</td><td>15</td><td>0.626</td><td>0.888</td><td>2</td><td>&minus;3.361</td><td>1</td><td>0.109</td><td>0.00792</td><td>0.127</td><td>0.343</td><td>0.308</td><td>128.008</td><td>367432</td></tr>
+    <tr><td class='row_index'>32,832</td><td>27</td><td>0.603</td><td>0.884</td><td>5</td><td>&minus;4.571</td><td>0</td><td>0.0385</td><td>0.000133</td><td>0.341</td><td>0.742</td><td>0.0894</td><td>127.984</td><td>337500</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>32,833 rows &times; 13 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
 </div>
 </div>
 </div>

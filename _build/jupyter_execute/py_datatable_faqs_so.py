@@ -162,7 +162,7 @@ sales_DT
 
 That is OK, you have noticed or tried converting a column from string to any other types **(int,float,bool)**
 
-#sales_DT['profit_perc'] = float
+sales_DT['profit_perc'] = float
 
 **Note** : String to other type converions are not yet implemented in datatable versions till 0.10.1 and they would be surely implemented in the upcoming versions.
 
@@ -399,4 +399,50 @@ dt.rbind(payments_new_dt,payment_extra_dt)
 
 dt.rbind(payments_new_dt,payment_extra_dt,force=True)
 
-**Note** : It is recommended that both dataframes should have the same columns, however if they are not same an extra option **force** should be passed in with an option **True** so that the column values will be filled in with NA's
+**Note** : It is recommended that both dataframes should have the same columns, however if they are not same an extra option **force** should be passed in with an option **True** so that the column values will be filled in with NA's.
+
+### 1.11 How to rename column names of dataframe?
+
+There are couple of typo errors in column names such as in the below dataframe we have a column **defalut_col** which have a spelling mistake and it should be renamed to **default_col**.
+
+payments_new_dt
+
+# list out the DT column names
+payments_new_dt.names
+
+# Change the column names using a dict {'old_col':'new_col'}
+payments_new_dt.names = {'defalut_col':'default_col'}
+
+payments_new_dt
+
+### 1.12 How to find unique values by group in dataframe?
+
+DT_ventas = dt.Frame({'c_id':[1,2,1,2,3,2,4,2,4,5],
+                      'cust_life_cycle':['Lead','Active','Lead','Active','Inactive','Lead','Active','Lead','Inactive','Lead']
+                     })
+
+DT_ventas
+
+DT_ventas[:,count(),by(f.cust_life_cycle,f.c_id)
+         ][:,{'unique_cids':count()},by(f.cust_life_cycle)]
+
+### 1.13 How to filter observations for the multiple values passed in the I expression of pydatatable frame?
+
+DT_films = dt.Frame({'film':['Don','Warriors','Dragon','Chicago','Lion','Don','Chicago','Warriors'],
+                     'gross':[400,500,600,100,200,300,900,1000]
+                    })
+
+DT_films
+
+DT_films[((f.film=="Don") | (f.film=="Chicago")),:]
+
+# Loading libraries
+import functools
+import operator
+
+films = ['Lion', 'Chicago', 'Don']
+
+filter_cond = functools.reduce(operator.or_, (f.film == item for item in films))
+
+DT_films[filter_cond,:]
+

@@ -243,6 +243,21 @@
      1.10 How to add new observations to dataframe ?
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-rename-column-names-of-dataframe">
+     1.11 How to rename column names of dataframe?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-find-unique-values-by-group-in-dataframe">
+     1.12 How to find unique values by group in dataframe?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-filter-observations-for-the-multiple-values-passed-in-the-i-expression-of-pydatatable-frame">
+     1.13 How to filter observations for the multiple values passed in the I expression of pydatatable frame?
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -753,7 +768,17 @@
 <p>That is OK, you have noticed or tried converting a column from string to any other types <strong>(int,float,bool)</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#sales_DT[&#39;profit_perc&#39;] = float</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">24</span><span class="o">-</span><span class="mi">8</span><span class="n">ac3eb52bc29</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+
+<span class="ne">NotImplementedError</span>: Unable to cast `str32` into `float64`
 </pre></div>
 </div>
 </div>
@@ -777,43 +802,11 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(32833, 23)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Spotify dataframe has come with about 32K observations and 23 columns and the columns types can be viewed as</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_songs_dt</span><span class="o">.</span><span class="n">stypes</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(stype.str32,
- stype.str32,
- stype.str32,
- stype.int32,
- stype.str32,
- stype.str32,
- stype.str32,
- stype.str32,
- stype.str32,
- stype.str32,
- stype.str32,
- stype.float64,
- stype.float64,
- stype.int32,
- stype.float64,
- stype.bool8,
- stype.float64,
- stype.float64,
- stype.float64,
- stype.float64,
- stype.float64,
- stype.float64,
- stype.int32)
 </pre></div>
 </div>
 </div>
@@ -829,30 +822,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>track_popularity</th><th>key</th><th>duration_ms</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>66</td><td>6</td><td>194754</td></tr>
-    <tr><td class='row_index'>1</td><td>67</td><td>11</td><td>162600</td></tr>
-    <tr><td class='row_index'>2</td><td>70</td><td>1</td><td>176616</td></tr>
-    <tr><td class='row_index'>3</td><td>60</td><td>7</td><td>169093</td></tr>
-    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
-    <tr><td class='row_index'>32,829</td><td>20</td><td>0</td><td>353120</td></tr>
-    <tr><td class='row_index'>32,830</td><td>14</td><td>6</td><td>210112</td></tr>
-    <tr><td class='row_index'>32,831</td><td>15</td><td>2</td><td>367432</td></tr>
-    <tr><td class='row_index'>32,832</td><td>27</td><td>5</td><td>337500</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>32,833 rows &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>In a second attempt, we would like to see both float and bool type columns, and the below is the solution for it.</p>
 <div class="cell docutils container">
@@ -861,30 +830,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>danceability</th><th>energy</th><th>loudness</th><th>speechiness</th><th>acousticness</th><th>instrumentalness</th><th>liveness</th><th>valence</th><th>tempo</th><th>mode</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>0.748</td><td>0.916</td><td>&minus;2.634</td><td>0.0583</td><td>0.102</td><td>0</td><td>0.0653</td><td>0.518</td><td>122.036</td><td>1</td></tr>
-    <tr><td class='row_index'>1</td><td>0.726</td><td>0.815</td><td>&minus;4.969</td><td>0.0373</td><td>0.0724</td><td>0.00421</td><td>0.357</td><td>0.693</td><td>99.972</td><td>1</td></tr>
-    <tr><td class='row_index'>2</td><td>0.675</td><td>0.931</td><td>&minus;3.432</td><td>0.0742</td><td>0.0794</td><td>2.33e-05</td><td>0.11</td><td>0.613</td><td>124.008</td><td>0</td></tr>
-    <tr><td class='row_index'>3</td><td>0.718</td><td>0.93</td><td>&minus;3.778</td><td>0.102</td><td>0.0287</td><td>9.43e-06</td><td>0.204</td><td>0.277</td><td>121.956</td><td>1</td></tr>
-    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
-    <tr><td class='row_index'>32,829</td><td>0.522</td><td>0.786</td><td>&minus;4.462</td><td>0.042</td><td>0.00171</td><td>0.00427</td><td>0.375</td><td>0.4</td><td>128.041</td><td>1</td></tr>
-    <tr><td class='row_index'>32,830</td><td>0.529</td><td>0.821</td><td>&minus;4.899</td><td>0.0481</td><td>0.108</td><td>1.11e-06</td><td>0.15</td><td>0.436</td><td>127.989</td><td>0</td></tr>
-    <tr><td class='row_index'>32,831</td><td>0.626</td><td>0.888</td><td>&minus;3.361</td><td>0.109</td><td>0.00792</td><td>0.127</td><td>0.343</td><td>0.308</td><td>128.008</td><td>1</td></tr>
-    <tr><td class='row_index'>32,832</td><td>0.603</td><td>0.884</td><td>&minus;4.571</td><td>0.0385</td><td>0.000133</td><td>0.341</td><td>0.742</td><td>0.0894</td><td>127.984</td><td>0</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>32,833 rows &times; 10 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>So here we have learnt that if more than one type of columns are required to be selected the types should be passed in J expression using a list i.e [dt.int32,dt.str32,dt.bool8]</p>
 <p><strong>Note</strong> : In above two cases we have limited the output observations for 5 only.</p>
@@ -902,30 +847,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>track_name</th><th>track_artist</th><th>track_popularity</th><th>track_album_id</th><th>track_album_name</th><th>track_album_release_date</th><th>playlist_name</th><th>playlist_id</th><th>playlist_genre</th><th>playlist_subgenre</th><th class='vellipsis'>&hellip;</th><th>instrumentalness</th><th>liveness</th><th>valence</th><th>tempo</th><th>duration_ms</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td></td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>I Don't Care (with Justin Bieber) - Loud Luxury Re&#133;</td><td>Ed Sheeran</td><td>66</td><td>2oCs0DGTsRO98Gh5ZSl2Cx</td><td>I Don't Care (with Justin Bieber) [Loud Luxury Rem&#133;</td><td>2019-06-14</td><td>Pop Remix</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>pop</td><td>dance pop</td><td class=vellipsis>&hellip;</td><td>0</td><td>0.0653</td><td>0.518</td><td>122.036</td><td>194754</td></tr>
-    <tr><td class='row_index'>1</td><td>Memories - Dillon Francis Remix</td><td>Maroon 5</td><td>67</td><td>63rPSO264uRjW1X5E6cWv6</td><td>Memories (Dillon Francis Remix)</td><td>2019-12-13</td><td>Pop Remix</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>pop</td><td>dance pop</td><td class=vellipsis>&hellip;</td><td>0.00421</td><td>0.357</td><td>0.693</td><td>99.972</td><td>162600</td></tr>
-    <tr><td class='row_index'>2</td><td>All the Time - Don Diablo Remix</td><td>Zara Larsson</td><td>70</td><td>1HoSmj2eLcsrR0vE9gThr4</td><td>All the Time (Don Diablo Remix)</td><td>2019-07-05</td><td>Pop Remix</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>pop</td><td>dance pop</td><td class=vellipsis>&hellip;</td><td>2.33e-05</td><td>0.11</td><td>0.613</td><td>124.008</td><td>176616</td></tr>
-    <tr><td class='row_index'>3</td><td>Call You Mine - Keanu Silva Remix</td><td>The Chainsmokers</td><td>60</td><td>1nqYsOef1yKKuGOVchbsk6</td><td>Call You Mine - The Remixes</td><td>2019-07-19</td><td>Pop Remix</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>pop</td><td>dance pop</td><td class=vellipsis>&hellip;</td><td>9.43e-06</td><td>0.204</td><td>0.277</td><td>121.956</td><td>169093</td></tr>
-    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22F1;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
-    <tr><td class='row_index'>32,829</td><td>Closer - Sultan &amp; Ned Shepard Remix</td><td>Tegan and Sara</td><td>20</td><td>6kD6KLxj7s8eCE3ABvAyf5</td><td>Closer Remixed</td><td>2013-03-08</td><td>♥ EDM LOVE 2020</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>edm</td><td>progressive electro house</td><td class=vellipsis>&hellip;</td><td>0.00427</td><td>0.375</td><td>0.4</td><td>128.041</td><td>353120</td></tr>
-    <tr><td class='row_index'>32,830</td><td>Sweet Surrender - Radio Edit</td><td>Starkillers</td><td>14</td><td>0ltWNSY9JgxoIZO4VzuCa6</td><td>Sweet Surrender (Radio Edit)</td><td>2014-04-21</td><td>♥ EDM LOVE 2020</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>edm</td><td>progressive electro house</td><td class=vellipsis>&hellip;</td><td>1.11e-06</td><td>0.15</td><td>0.436</td><td>127.989</td><td>210112</td></tr>
-    <tr><td class='row_index'>32,831</td><td>Only For You - Maor Levi Remix</td><td>Mat Zo</td><td>15</td><td>1fGrOkHnHJcStl14zNx8Jy</td><td>Only For You (Remixes)</td><td>2014-01-01</td><td>♥ EDM LOVE 2020</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>edm</td><td>progressive electro house</td><td class=vellipsis>&hellip;</td><td>0.127</td><td>0.343</td><td>0.308</td><td>128.008</td><td>367432</td></tr>
-    <tr><td class='row_index'>32,832</td><td>Typhoon - Original Mix</td><td>Julian Calor</td><td>27</td><td>0X3mUOm6MhxR7PzxG95rAo</td><td>Typhoon/Storm</td><td>2014-03-03</td><td>♥ EDM LOVE 2020</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>edm</td><td>progressive electro house</td><td class=vellipsis>&hellip;</td><td>0.341</td><td>0.742</td><td>0.0894</td><td>127.984</td><td>337500</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>32,833 rows &times; 22 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>In a second case - deselect these four columns(track_album_id,track_album_name,playlist_name,playlist_genre) from spotify dataframe -</p>
 <div class="cell docutils container">
@@ -934,30 +855,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>track_id</th><th>track_name</th><th>track_artist</th><th>track_popularity</th><th>track_album_release_date</th><th>playlist_id</th><th>playlist_subgenre</th><th>danceability</th><th>energy</th><th>key</th><th class='vellipsis'>&hellip;</th><th>instrumentalness</th><th>liveness</th><th>valence</th><th>tempo</th><th>duration_ms</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td></td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>6f807x0ima9a1j3VPbc7VN</td><td>I Don't Care (with Justin Bieber) - Loud Luxury Re&#133;</td><td>Ed Sheeran</td><td>66</td><td>2019-06-14</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>dance pop</td><td>0.748</td><td>0.916</td><td>6</td><td class=vellipsis>&hellip;</td><td>0</td><td>0.0653</td><td>0.518</td><td>122.036</td><td>194754</td></tr>
-    <tr><td class='row_index'>1</td><td>0r7CVbZTWZgbTCYdfa2P31</td><td>Memories - Dillon Francis Remix</td><td>Maroon 5</td><td>67</td><td>2019-12-13</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>dance pop</td><td>0.726</td><td>0.815</td><td>11</td><td class=vellipsis>&hellip;</td><td>0.00421</td><td>0.357</td><td>0.693</td><td>99.972</td><td>162600</td></tr>
-    <tr><td class='row_index'>2</td><td>1z1Hg7Vb0AhHDiEmnDE79l</td><td>All the Time - Don Diablo Remix</td><td>Zara Larsson</td><td>70</td><td>2019-07-05</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>dance pop</td><td>0.675</td><td>0.931</td><td>1</td><td class=vellipsis>&hellip;</td><td>2.33e-05</td><td>0.11</td><td>0.613</td><td>124.008</td><td>176616</td></tr>
-    <tr><td class='row_index'>3</td><td>75FpbthrwQmzHlBJLuGdC7</td><td>Call You Mine - Keanu Silva Remix</td><td>The Chainsmokers</td><td>60</td><td>2019-07-19</td><td>37i9dQZF1DXcZDD7cfEKhW</td><td>dance pop</td><td>0.718</td><td>0.93</td><td>7</td><td class=vellipsis>&hellip;</td><td>9.43e-06</td><td>0.204</td><td>0.277</td><td>121.956</td><td>169093</td></tr>
-    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22F1;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
-    <tr><td class='row_index'>32,829</td><td>5Aevni09Em4575077nkWHz</td><td>Closer - Sultan &amp; Ned Shepard Remix</td><td>Tegan and Sara</td><td>20</td><td>2013-03-08</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>progressive electro house</td><td>0.522</td><td>0.786</td><td>0</td><td class=vellipsis>&hellip;</td><td>0.00427</td><td>0.375</td><td>0.4</td><td>128.041</td><td>353120</td></tr>
-    <tr><td class='row_index'>32,830</td><td>7ImMqPP3Q1yfUHvsdn7wEo</td><td>Sweet Surrender - Radio Edit</td><td>Starkillers</td><td>14</td><td>2014-04-21</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>progressive electro house</td><td>0.529</td><td>0.821</td><td>6</td><td class=vellipsis>&hellip;</td><td>1.11e-06</td><td>0.15</td><td>0.436</td><td>127.989</td><td>210112</td></tr>
-    <tr><td class='row_index'>32,831</td><td>2m69mhnfQ1Oq6lGtXuYhgX</td><td>Only For You - Maor Levi Remix</td><td>Mat Zo</td><td>15</td><td>2014-01-01</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>progressive electro house</td><td>0.626</td><td>0.888</td><td>2</td><td class=vellipsis>&hellip;</td><td>0.127</td><td>0.343</td><td>0.308</td><td>128.008</td><td>367432</td></tr>
-    <tr><td class='row_index'>32,832</td><td>29zWqhca3zt5NsckZqDf6c</td><td>Typhoon - Original Mix</td><td>Julian Calor</td><td>27</td><td>2014-03-03</td><td>6jI1gFr6ANFtT8MmTvA2Ux</td><td>progressive electro house</td><td>0.603</td><td>0.884</td><td>5</td><td class=vellipsis>&hellip;</td><td>0.341</td><td>0.742</td><td>0.0894</td><td>127.984</td><td>337500</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>32,833 rows &times; 19 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>Here we have given a column names in a list and let us understand the anotomy of this syntax.</p>
 <ul class="simple">
@@ -971,30 +868,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>track_popularity</th><th>danceability</th><th>energy</th><th>key</th><th>loudness</th><th>mode</th><th>speechiness</th><th>acousticness</th><th>instrumentalness</th><th>liveness</th><th>valence</th><th>tempo</th><th>duration_ms</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>66</td><td>0.748</td><td>0.916</td><td>6</td><td>&minus;2.634</td><td>1</td><td>0.0583</td><td>0.102</td><td>0</td><td>0.0653</td><td>0.518</td><td>122.036</td><td>194754</td></tr>
-    <tr><td class='row_index'>1</td><td>67</td><td>0.726</td><td>0.815</td><td>11</td><td>&minus;4.969</td><td>1</td><td>0.0373</td><td>0.0724</td><td>0.00421</td><td>0.357</td><td>0.693</td><td>99.972</td><td>162600</td></tr>
-    <tr><td class='row_index'>2</td><td>70</td><td>0.675</td><td>0.931</td><td>1</td><td>&minus;3.432</td><td>0</td><td>0.0742</td><td>0.0794</td><td>2.33e-05</td><td>0.11</td><td>0.613</td><td>124.008</td><td>176616</td></tr>
-    <tr><td class='row_index'>3</td><td>60</td><td>0.718</td><td>0.93</td><td>7</td><td>&minus;3.778</td><td>1</td><td>0.102</td><td>0.0287</td><td>9.43e-06</td><td>0.204</td><td>0.277</td><td>121.956</td><td>169093</td></tr>
-    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
-    <tr><td class='row_index'>32,829</td><td>20</td><td>0.522</td><td>0.786</td><td>0</td><td>&minus;4.462</td><td>1</td><td>0.042</td><td>0.00171</td><td>0.00427</td><td>0.375</td><td>0.4</td><td>128.041</td><td>353120</td></tr>
-    <tr><td class='row_index'>32,830</td><td>14</td><td>0.529</td><td>0.821</td><td>6</td><td>&minus;4.899</td><td>0</td><td>0.0481</td><td>0.108</td><td>1.11e-06</td><td>0.15</td><td>0.436</td><td>127.989</td><td>210112</td></tr>
-    <tr><td class='row_index'>32,831</td><td>15</td><td>0.626</td><td>0.888</td><td>2</td><td>&minus;3.361</td><td>1</td><td>0.109</td><td>0.00792</td><td>0.127</td><td>0.343</td><td>0.308</td><td>128.008</td><td>367432</td></tr>
-    <tr><td class='row_index'>32,832</td><td>27</td><td>0.603</td><td>0.884</td><td>5</td><td>&minus;4.571</td><td>0</td><td>0.0385</td><td>0.000133</td><td>0.341</td><td>0.742</td><td>0.0894</td><td>127.984</td><td>337500</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>32,833 rows &times; 13 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 </div>
 <div class="section" id="how-to-remove-a-list-of-columns-from-dataframe">
@@ -1023,26 +896,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>country</th><th>id</th><th>egg</th><th>veg</th><th>fork</th><th>beef</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>A</td><td>1</td><td>10</td><td>30</td><td>5</td><td>90</td></tr>
-    <tr><td class='row_index'>1</td><td>B</td><td>2</td><td>20</td><td>40</td><td>10</td><td>50</td></tr>
-    <tr><td class='row_index'>2</td><td>C</td><td>3</td><td>30</td><td>10</td><td>2</td><td>20</td></tr>
-    <tr><td class='row_index'>3</td><td>D</td><td>4</td><td>5</td><td>3</td><td>1</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>4</td><td>E</td><td>5</td><td>40</td><td>5</td><td>9</td><td>4</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>5 rows &times; 6 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>I would like to remove a column id from this dataframe following the above syntax -</p>
 <div class="cell docutils container">
@@ -1058,26 +911,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>country</th><th>egg</th><th>veg</th><th>fork</th><th>beef</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>A</td><td>10</td><td>30</td><td>5</td><td>90</td></tr>
-    <tr><td class='row_index'>1</td><td>B</td><td>20</td><td>40</td><td>10</td><td>50</td></tr>
-    <tr><td class='row_index'>2</td><td>C</td><td>30</td><td>10</td><td>2</td><td>20</td></tr>
-    <tr><td class='row_index'>3</td><td>D</td><td>5</td><td>3</td><td>1</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>4</td><td>E</td><td>40</td><td>5</td><td>9</td><td>4</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>5 rows &times; 5 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>we noticed that the column id is no more existed in comidas dataframe, and if we want to remove more than one column their names should be passed in a list type as below-</p>
 <div class="cell docutils container">
@@ -1093,26 +926,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>country</th><th>egg</th><th>fork</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>A</td><td>10</td><td>5</td></tr>
-    <tr><td class='row_index'>1</td><td>B</td><td>20</td><td>10</td></tr>
-    <tr><td class='row_index'>2</td><td>C</td><td>30</td><td>2</td></tr>
-    <tr><td class='row_index'>3</td><td>D</td><td>5</td><td>1</td></tr>
-    <tr><td class='row_index'>4</td><td>E</td><td>40</td><td>9</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>5 rows &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>We are just left with 3 columns and i’m making a copy of this dataframe as -</p>
 <div class="cell docutils container">
@@ -1137,26 +950,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>country</th><th>egg</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>A</td><td>10</td></tr>
-    <tr><td class='row_index'>1</td><td>B</td><td>20</td></tr>
-    <tr><td class='row_index'>2</td><td>C</td><td>30</td></tr>
-    <tr><td class='row_index'>3</td><td>D</td><td>5</td></tr>
-    <tr><td class='row_index'>4</td><td>E</td><td>40</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>5 rows &times; 2 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1164,26 +957,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>country</th><th>egg</th><th>fork</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>A</td><td>10</td><td>5</td></tr>
-    <tr><td class='row_index'>1</td><td>B</td><td>20</td><td>10</td></tr>
-    <tr><td class='row_index'>2</td><td>C</td><td>30</td><td>2</td></tr>
-    <tr><td class='row_index'>3</td><td>D</td><td>5</td><td>1</td></tr>
-    <tr><td class='row_index'>4</td><td>E</td><td>40</td><td>9</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>5 rows &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>Fork column is still available in DT_comidas and it is removed from comidas_gen_dt.</p>
 </div>
@@ -1223,32 +996,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td></tr>
-    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td></tr>
-    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
-    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>6</td><td>903-QPO</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
-    <tr><td class='row_index'>8</td><td>102-PPO</td><td>26.9</td><td>Cash</td></tr>
-    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>10</td><td>692-CPO</td><td><span class=na>NA</span></td><td>PhonePay</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>11 rows &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>We have a function called <strong>countna</strong> from datatable, on applying it on dataframe it will count how many of NA’s are in each column and returns a dataframe as below.</p>
 <div class="cell docutils container">
@@ -1257,22 +1004,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>0</td><td>2</td><td>5</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>1 row &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>Here we have 2 NA’s in charges column and 5 NA’s in payment method.</p>
 <p>As per the Datatable sytax we have a filter option I position as,</p>
@@ -1286,23 +1017,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>903-QPO</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>1</td><td>692-CPO</td><td><span class=na>NA</span></td><td>PhonePay</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>2 rows &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>What if we would like to not to include NA’s observations per a column charges, and it can be done as follows- here we have just append that isna function with a symbol (~).</p>
 <div class="cell docutils container">
@@ -1311,30 +1025,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td></tr>
-    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td></tr>
-    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
-    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>6</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
-    <tr><td class='row_index'>7</td><td>102-PPO</td><td>26.9</td><td>Cash</td></tr>
-    <tr><td class='row_index'>8</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>9 rows &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>We could also use the <strong>isna</strong> in by position to count how many of observations are having NA’s per in specified column.</p>
 <div class="cell docutils container">
@@ -1343,23 +1033,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>payment_method</th><th>count</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='boolean' title='bool8'>&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>0</td><td>6</td></tr>
-    <tr><td class='row_index'>1</td><td>1</td><td>5</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>2 rows &times; 2 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>We have observed that there are 5 NA’s and 6 observations are having the values.</p>
 <p>There are some cases where we have to see two or more observations are together having the NA’s. for example we can check for NA’s across payment method and charges as below. we have made use of some logical operations and will be discussed when a case comes in. for now you can just remember this syntax.</p>
@@ -1369,23 +1042,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>C0</th><th>count</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='boolean' title='bool8'>&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>0</td><td>10</td></tr>
-    <tr><td class='row_index'>1</td><td>1</td><td>1</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>2 rows &times; 2 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>Here we can see that there is only one observation having NA’s for both of these columns.</p>
 </div>
@@ -1410,32 +1066,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td></tr>
-    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td></tr>
-    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
-    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>6</td><td>903-QPO</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
-    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td></tr>
-    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>10</td><td>692-CPO</td><td><span class=na>NA</span></td><td>PhonePay</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>11 rows &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>We are now going to fill in NA’s with a specific value in charges column as below.</p>
 <div class="cell docutils container">
@@ -1451,32 +1081,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td></tr>
-    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td></tr>
-    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
-    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
-    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td></tr>
-    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>11 rows &times; 3 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 </div>
 <div class="section" id="how-to-add-a-new-column-to-a-dataframe">
@@ -1500,32 +1104,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td><td>1</td></tr>
-    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td><td>1</td></tr>
-    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td><td>1</td></tr>
-    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td><td>1</td></tr>
-    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td><td>1</td></tr>
-    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td><td>1</td></tr>
-    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td><td>1</td></tr>
-    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td><td>1</td></tr>
-    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td><td>1</td></tr>
-    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td><td>1</td></tr>
-    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td><td>1</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>11 rows &times; 4 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>Case 2: we are going to bind the two dataframe columns as below</p>
 <div class="cell docutils container">
@@ -1548,32 +1126,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th><th>defalut_col</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td><td>1</td><td>1</td></tr>
-    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td><td>1</td><td>1</td></tr>
-    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td><td>1</td><td>1</td></tr>
-    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td><td>1</td><td>1</td></tr>
-    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td><td>1</td><td>1</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>11 rows &times; 5 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>Case 3: We are trying to bind two dataframes which are having unequal number of observations.</p>
 <div class="cell docutils container">
@@ -1589,25 +1141,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 1)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">cbind</span><span class="p">(</span><span class="n">payments_dt</span><span class="p">,</span><span class="n">payment_default_1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">62</span><span class="o">-</span><span class="mi">4</span><span class="n">abcb74a84ca</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dt</span><span class="o">.</span><span class="n">cbind</span><span class="p">(</span><span class="n">payments_dt</span><span class="p">,</span><span class="n">payment_default_1</span><span class="p">)</span>
-
-<span class="ne">ValueError</span>: Cannot cbind frame with 10 rows to a frame with 11 rows. Use `force=True` to disregard this check and merge the frames anyways.
 </pre></div>
 </div>
 </div>
@@ -1618,32 +1155,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th><th>defalut_col</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td><td>1</td><td>1</td></tr>
-    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td><td>1</td><td>1</td></tr>
-    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td><td>1</td><td>1</td></tr>
-    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td><td>1</td><td>1</td></tr>
-    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
-    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td><td>1</td><td><span class=na>NA</span></td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>11 rows &times; 5 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p><strong>Note</strong> : It is recommended that both dataframes should have the equal number of observations, however if they are not equally sized an extra option <strong>force</strong> should be passed in with an option <strong>True</strong>, so that the targeted observations are filled with NA’s</p>
 </div>
@@ -1679,39 +1190,11 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div class='datatable'>
-  <table class='frame'>
-  <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th><th>def_col</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
-  </thead>
-  <tbody>
-    <tr><td class='row_index'>0</td><td>123-AMS</td><td>45.3</td><td>Gpay</td><td>0</td><td>0</td></tr>
-    <tr><td class='row_index'>1</td><td>923-CIQ</td><td>90.3</td><td>Cheque</td><td>0</td><td>1</td></tr>
-    <tr><td class='row_index'>2</td><td>100-ICIC</td><td>21.9</td><td>Ppay</td><td>0</td><td>0</td></tr>
-  </tbody>
-  </table>
-  <div class='footer'>
-    <div class='frame_dimensions'>3 rows &times; 5 columns</div>
-  </div>
-</div>
-</div></div>
 </div>
 <p>We are now going to bind the rows of these two dataframes, here notice that the col <strong>def_col</strong> not existed in payments_new_dt, and let us see how this can be handled  below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">rbind</span><span class="p">(</span><span class="n">payments_new_dt</span><span class="p">,</span><span class="n">payment_extra_dt</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">299</span><span class="o">-</span><span class="mi">8</span><span class="n">ae74617f8d9</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dt</span><span class="o">.</span><span class="n">rbind</span><span class="p">(</span><span class="n">payments_new_dt</span><span class="p">,</span><span class="n">payment_extra_dt</span><span class="p">)</span>
-
-<span class="ne">ValueError</span>: Column `def_col` is not found in the original frame; if you want to rbind the frames anyways filling missing values with NAs, then use `force=True`
 </pre></div>
 </div>
 </div>
@@ -1722,37 +1205,187 @@
 </pre></div>
 </div>
 </div>
+</div>
+<p><strong>Note</strong> : It is recommended that both dataframes should have the same columns, however if they are not same an extra option <strong>force</strong> should be passed in with an option <strong>True</strong> so that the column values will be filled in with NA’s.</p>
+</div>
+<div class="section" id="how-to-rename-column-names-of-dataframe">
+<h3>1.11 How to rename column names of dataframe?<a class="headerlink" href="#how-to-rename-column-names-of-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>There are couple of typo errors in column names such as in the below dataframe we have a column <strong>defalut_col</strong> which have a spelling mistake and it should be renamed to <strong>default_col</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_new_dt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list out the DT column names</span>
+<span class="n">payments_new_dt</span><span class="o">.</span><span class="n">names</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change the column names using a dict {&#39;old_col&#39;:&#39;new_col&#39;}</span>
+<span class="n">payments_new_dt</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;defalut_col&#39;</span><span class="p">:</span><span class="s1">&#39;default_col&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_new_dt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-find-unique-values-by-group-in-dataframe">
+<h3>1.12 How to find unique values by group in dataframe?<a class="headerlink" href="#how-to-find-unique-values-by-group-in-dataframe" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_ventas</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">({</span><span class="s1">&#39;c_id&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                      <span class="s1">&#39;cust_life_cycle&#39;</span><span class="p">:[</span><span class="s1">&#39;Lead&#39;</span><span class="p">,</span><span class="s1">&#39;Active&#39;</span><span class="p">,</span><span class="s1">&#39;Lead&#39;</span><span class="p">,</span><span class="s1">&#39;Active&#39;</span><span class="p">,</span><span class="s1">&#39;Inactive&#39;</span><span class="p">,</span><span class="s1">&#39;Lead&#39;</span><span class="p">,</span><span class="s1">&#39;Active&#39;</span><span class="p">,</span><span class="s1">&#39;Lead&#39;</span><span class="p">,</span><span class="s1">&#39;Inactive&#39;</span><span class="p">,</span><span class="s1">&#39;Lead&#39;</span><span class="p">]</span>
+                     <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_ventas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_ventas</span><span class="p">[:,</span><span class="n">count</span><span class="p">(),</span><span class="n">by</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">cust_life_cycle</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">c_id</span><span class="p">)</span>
+         <span class="p">][:,{</span><span class="s1">&#39;unique_cids&#39;</span><span class="p">:</span><span class="n">count</span><span class="p">()},</span><span class="n">by</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">cust_life_cycle</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-filter-observations-for-the-multiple-values-passed-in-the-i-expression-of-pydatatable-frame">
+<h3>1.13 How to filter observations for the multiple values passed in the I expression of pydatatable frame?<a class="headerlink" href="#how-to-filter-observations-for-the-multiple-values-passed-in-the-i-expression-of-pydatatable-frame" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_films</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">({</span><span class="s1">&#39;film&#39;</span><span class="p">:[</span><span class="s1">&#39;Don&#39;</span><span class="p">,</span><span class="s1">&#39;Warriors&#39;</span><span class="p">,</span><span class="s1">&#39;Dragon&#39;</span><span class="p">,</span><span class="s1">&#39;Chicago&#39;</span><span class="p">,</span><span class="s1">&#39;Lion&#39;</span><span class="p">,</span><span class="s1">&#39;Don&#39;</span><span class="p">,</span><span class="s1">&#39;Chicago&#39;</span><span class="p">,</span><span class="s1">&#39;Warriors&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;gross&#39;</span><span class="p">:[</span><span class="mi">400</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">900</span><span class="p">,</span><span class="mi">1000</span><span class="p">]</span>
+                    <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_films</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div class='datatable'>
   <table class='frame'>
   <thead>
-    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th><th>defalut_col</th><th>def_col</th></tr>
-    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
+    <tr class='colnames'><td class='row_index'></td><th>film</th><th>gross</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
   </thead>
   <tbody>
-    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>11</td><td>123-AMS</td><td>45.3</td><td>Gpay</td><td>0</td><td><span class=na>NA</span></td><td>0</td></tr>
-    <tr><td class='row_index'>12</td><td>923-CIQ</td><td>90.3</td><td>Cheque</td><td>0</td><td><span class=na>NA</span></td><td>1</td></tr>
-    <tr><td class='row_index'>13</td><td>100-ICIC</td><td>21.9</td><td>Ppay</td><td>0</td><td><span class=na>NA</span></td><td>0</td></tr>
+    <tr><td class='row_index'>0</td><td>Don</td><td>400</td></tr>
+    <tr><td class='row_index'>1</td><td>Warriors</td><td>500</td></tr>
+    <tr><td class='row_index'>2</td><td>Dragon</td><td>600</td></tr>
+    <tr><td class='row_index'>3</td><td>Chicago</td><td>100</td></tr>
+    <tr><td class='row_index'>4</td><td>Lion</td><td>200</td></tr>
+    <tr><td class='row_index'>5</td><td>Don</td><td>300</td></tr>
+    <tr><td class='row_index'>6</td><td>Chicago</td><td>900</td></tr>
+    <tr><td class='row_index'>7</td><td>Warriors</td><td>1000</td></tr>
   </tbody>
   </table>
   <div class='footer'>
-    <div class='frame_dimensions'>14 rows &times; 6 columns</div>
+    <div class='frame_dimensions'>8 rows &times; 2 columns</div>
   </div>
 </div>
 </div></div>
 </div>
-<p><strong>Note</strong> : It is recommended that both dataframes should have the same columns, however if they are not same an extra option <strong>force</strong> should be passed in with an option <strong>True</strong> so that the column values will be filled in with NA’s</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_films</span><span class="p">[((</span><span class="n">f</span><span class="o">.</span><span class="n">film</span><span class="o">==</span><span class="s2">&quot;Don&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">film</span><span class="o">==</span><span class="s2">&quot;Chicago&quot;</span><span class="p">)),:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>film</th><th>gross</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>Don</td><td>400</td></tr>
+    <tr><td class='row_index'>1</td><td>Chicago</td><td>100</td></tr>
+    <tr><td class='row_index'>2</td><td>Don</td><td>300</td></tr>
+    <tr><td class='row_index'>3</td><td>Chicago</td><td>900</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>4 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading libraries</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">films</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Lion&#39;</span><span class="p">,</span> <span class="s1">&#39;Chicago&#39;</span><span class="p">,</span> <span class="s1">&#39;Don&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_cond</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">or_</span><span class="p">,</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">film</span> <span class="o">==</span> <span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">films</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT_films</span><span class="p">[</span><span class="n">filter_cond</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>film</th><th>gross</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>Don</td><td>400</td></tr>
+    <tr><td class='row_index'>1</td><td>Chicago</td><td>100</td></tr>
+    <tr><td class='row_index'>2</td><td>Lion</td><td>200</td></tr>
+    <tr><td class='row_index'>3</td><td>Don</td><td>300</td></tr>
+    <tr><td class='row_index'>4</td><td>Chicago</td><td>900</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
 </div>
 </div>
 </div>

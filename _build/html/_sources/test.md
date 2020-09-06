@@ -2,3 +2,4 @@
   sections:
     - file: markdown
     - file: notebooks
+    - file: Py_Seattle_Bikes_tidy_data_wrangling_pydatatable

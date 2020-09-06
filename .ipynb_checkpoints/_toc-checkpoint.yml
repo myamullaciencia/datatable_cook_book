@@ -1,6 +1,7 @@
 - file: intro
 - file: ucases
   sections:
+    - file: py_seattle_bikes_tidy_data_analysis
     - file: py_dt_penguins
     - file: py_dt_policia
     

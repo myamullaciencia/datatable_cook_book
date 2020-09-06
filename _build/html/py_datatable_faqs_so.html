@@ -1,0 +1,638 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>py_datatable wiki &#8212; (py)datatable cookbook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Frequently Asked Questions" href="SO_faqs.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/py_datatable_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">(py)datatable cookbook</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Data Wrangling using py-datatable
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ucases.html">
+   Exploratory Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="SO_faqs.html">
+   Frequently Asked Questions
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     py_datatable wiki
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/py_datatable_faqs_so.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/py_datatable_faqs_so.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/py_datatable_faqs_so.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-manipulations">
+   1. Data Manipulations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-sort-a-datatable-frame-in-descending-order">
+     1. 1 How to sort a datatable frame in descending order.?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-count-the-number-of-instances-for-each-category-using-group-by-in-pydatadable">
+     1.2 How to count the number of instances for each category using group by in pydatadable?
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="py-datatable-wiki">
+<h1>py_datatable wiki<a class="headerlink" href="#py-datatable-wiki" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datatable</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="kn">from</span> <span class="nn">datatable</span> <span class="kn">import</span> <span class="n">f</span><span class="p">,</span><span class="n">by</span><span class="p">,</span><span class="n">count</span><span class="p">,</span><span class="nb">sum</span><span class="p">,</span><span class="n">update</span><span class="p">,</span><span class="n">sort</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">init_styles</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type='text/css'>
+.datatable table.frame { margin-bottom: 0; }
+.datatable table.frame thead { border-bottom: none; }
+.datatable table.frame tr.coltypes td {  color: #FFFFFF;  line-height: 6px;  padding: 0 0.5em;}
+.datatable .boolean { background: #DDDD99; }
+.datatable .object  { background: #565656; }
+.datatable .integer { background: #5D9E5D; }
+.datatable .float   { background: #4040CC; }
+.datatable .string  { background: #CC4040; }
+.datatable .row_index {  background: var(--jp-border-color3);  border-right: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  font-size: 9px;}
+.datatable .frame tr.coltypes .row_index {  background: var(--jp-border-color0);}
+.datatable th:nth-child(2) { padding-left: 12px; }
+.datatable .hellipsis {  color: var(--jp-cell-editor-border-color);}
+.datatable .vellipsis {  background: var(--jp-layout-color0);  color: var(--jp-cell-editor-border-color);}
+.datatable .na {  color: var(--jp-cell-editor-border-color);  font-size: 80%;}
+.datatable .footer { font-size: 9px; }
+.datatable .frame_dimensions {  background: var(--jp-border-color3);  border-top: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  display: inline-block;  opacity: 0.6;  padding: 1px 10px 1px 5px;}
+</style>
+</div><div class="output text_html"><style type='text/css'>
+.datatable table.frame { margin-bottom: 0; }
+.datatable table.frame thead { border-bottom: none; }
+.datatable table.frame tr.coltypes td {  color: #FFFFFF;  line-height: 6px;  padding: 0 0.5em;}
+.datatable .boolean { background: #DDDD99; }
+.datatable .object  { background: #565656; }
+.datatable .integer { background: #5D9E5D; }
+.datatable .float   { background: #4040CC; }
+.datatable .string  { background: #CC4040; }
+.datatable .row_index {  background: var(--jp-border-color3);  border-right: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  font-size: 9px;}
+.datatable .frame tr.coltypes .row_index {  background: var(--jp-border-color0);}
+.datatable th:nth-child(2) { padding-left: 12px; }
+.datatable .hellipsis {  color: var(--jp-cell-editor-border-color);}
+.datatable .vellipsis {  background: var(--jp-layout-color0);  color: var(--jp-cell-editor-border-color);}
+.datatable .na {  color: var(--jp-cell-editor-border-color);  font-size: 80%;}
+.datatable .footer { font-size: 9px; }
+.datatable .frame_dimensions {  background: var(--jp-border-color3);  border-top: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  display: inline-block;  opacity: 0.6;  padding: 1px 10px 1px 5px;}
+</style>
+</div></div>
+</div>
+<div class="section" id="data-manipulations">
+<h2>1. Data Manipulations<a class="headerlink" href="#data-manipulations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-to-sort-a-datatable-frame-in-descending-order">
+<h3>1. 1 How to sort a datatable frame in descending order.?<a class="headerlink" href="#how-to-sort-a-datatable-frame-in-descending-order" title="Permalink to this headline">¶</a></h3>
+<p>We have created a sample dataframe with two columns such as product(character type) and totals(numeric type) using a frame object from dt and assigned it to a variable called X.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">product</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;apples&quot;</span><span class="p">,</span> <span class="s2">&quot;spam&quot;</span><span class="p">,</span> <span class="s2">&quot;goo&quot;</span><span class="p">,</span> <span class="s2">&quot;bobcat&quot;</span><span class="p">,</span> <span class="s2">&quot;gold&quot;</span><span class="p">],</span> 
+                 <span class="n">totals</span><span class="o">=</span><span class="p">[</span><span class="mf">5.4</span><span class="p">,</span> <span class="mf">2.777</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">11.1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>product</th><th>totals</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>apples</td><td>5.4</td></tr>
+    <tr><td class='row_index'>1</td><td>spam</td><td>2.777</td></tr>
+    <tr><td class='row_index'>2</td><td>goo</td><td>0.1</td></tr>
+    <tr><td class='row_index'>3</td><td>bobcat</td><td>2.9</td></tr>
+    <tr><td class='row_index'>4</td><td>gold</td><td>11.1</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>As you might have already know about the datatable syntax as below</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                                    DT[I,J,BY|SORT|JOIN]
+</pre></div>
+</div>
+<p>For now look at the sort function, it takes eigther a single column or multiple columns in, and it would be applicable for character and numeric type fields</p>
+<ol class="simple">
+<li><p>In below code chunk case-1 we have passed a column totals in sort so that it arranges the data frame in ascending order considering the column(total).</p></li>
+<li><p>In code chunk case-2 the same column is given with appending a symbol(-) so that it arranges the data frame in descending order considering the column(total).</p></li>
+<li><p>In code chunk case - 3 we are trying to arrange the dataframe in ascending order of the products column</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case - 1</span>
+<span class="n">X</span><span class="p">[:,:,</span><span class="n">sort</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">totals</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>product</th><th>totals</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>goo</td><td>0.1</td></tr>
+    <tr><td class='row_index'>1</td><td>spam</td><td>2.777</td></tr>
+    <tr><td class='row_index'>2</td><td>bobcat</td><td>2.9</td></tr>
+    <tr><td class='row_index'>3</td><td>apples</td><td>5.4</td></tr>
+    <tr><td class='row_index'>4</td><td>gold</td><td>11.1</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case - 2 </span>
+<span class="n">X</span><span class="p">[:,:,</span><span class="n">sort</span><span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="o">.</span><span class="n">totals</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>product</th><th>totals</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>gold</td><td>11.1</td></tr>
+    <tr><td class='row_index'>1</td><td>apples</td><td>5.4</td></tr>
+    <tr><td class='row_index'>2</td><td>bobcat</td><td>2.9</td></tr>
+    <tr><td class='row_index'>3</td><td>spam</td><td>2.777</td></tr>
+    <tr><td class='row_index'>4</td><td>goo</td><td>0.1</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case - 3</span>
+<span class="n">X</span><span class="p">[:,:,</span><span class="n">sort</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">product</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>product</th><th>totals</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>apples</td><td>5.4</td></tr>
+    <tr><td class='row_index'>1</td><td>bobcat</td><td>2.9</td></tr>
+    <tr><td class='row_index'>2</td><td>gold</td><td>11.1</td></tr>
+    <tr><td class='row_index'>3</td><td>goo</td><td>0.1</td></tr>
+    <tr><td class='row_index'>4</td><td>spam</td><td>2.777</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>5 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>Let us create a one more dataframe with repeated values of products as below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">products</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;apples&#39;</span><span class="p">,</span><span class="s1">&#39;spam&#39;</span><span class="p">,</span><span class="s1">&#39;apples&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;spam&#39;</span><span class="p">],</span>
+             <span class="n">totals</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now summing off the totals per each category of products and arrange it in descending order of newly created column tot_sum</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[:,{</span><span class="s1">&#39;tot_sum&#39;</span><span class="p">:</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">totals</span><span class="p">)},</span><span class="n">by</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">products</span><span class="p">)</span>
+ <span class="p">][:,:,</span><span class="n">sort</span><span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="o">.</span><span class="n">tot_sum</span><span class="p">)</span>
+  <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>products</th><th>tot_sum</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>apples</td><td>55</td></tr>
+    <tr><td class='row_index'>1</td><td>spam</td><td>45</td></tr>
+    <tr><td class='row_index'>2</td><td>gold</td><td>10</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>3 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="section" id="how-to-count-the-number-of-instances-for-each-category-using-group-by-in-pydatadable">
+<h3>1.2 How to count the number of instances for each category using group by in pydatadable?<a class="headerlink" href="#how-to-count-the-number-of-instances-for-each-category-using-group-by-in-pydatadable" title="Permalink to this headline">¶</a></h3>
+<p>Here is our basic syntax representation of datatable frame-</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                                    DT[I,J,BY|SORT|JOIN]
+</pre></div>
+</div>
+<p>A sample dataframe created with the column name <strong>languages</strong> and would like to count how many of students are interested in learning each language category using aggregations such as by along with count,min,max,mean etc etc..</p>
+<p>Yes, its correct we should use a function called <strong>count</strong> to caluclate the number of observations and let us see how it works below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prog_lang_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">languages</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;javascript&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;javascript&#39;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prog_lang_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>languages</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>html</td></tr>
+    <tr><td class='row_index'>1</td><td>R</td></tr>
+    <tr><td class='row_index'>2</td><td>R</td></tr>
+    <tr><td class='row_index'>3</td><td>html</td></tr>
+    <tr><td class='row_index'>4</td><td>R</td></tr>
+    <tr><td class='row_index'>5</td><td>javascript</td></tr>
+    <tr><td class='row_index'>6</td><td>R</td></tr>
+    <tr><td class='row_index'>7</td><td>javascript</td></tr>
+    <tr><td class='row_index'>8</td><td>html</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>9 rows &times; 1 column</div>
+  </div>
+</div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prog_lang_dt</span><span class="p">[:,</span><span class="n">count</span><span class="p">(),</span><span class="n">by</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">languages</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>languages</th><th>count</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>R</td><td>4</td></tr>
+    <tr><td class='row_index'>1</td><td>html</td><td>3</td></tr>
+    <tr><td class='row_index'>2</td><td>javascript</td><td>2</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>3 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>If we would like like to rename a count column as total it can be done as follows,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prog_lang_dt</span><span class="p">[:,{</span><span class="s1">&#39;total&#39;</span><span class="p">:</span><span class="n">count</span><span class="p">()},</span><span class="n">by</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">languages</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>languages</th><th>total</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>R</td><td>4</td></tr>
+    <tr><td class='row_index'>1</td><td>html</td><td>3</td></tr>
+    <tr><td class='row_index'>2</td><td>javascript</td><td>2</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>3 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p><strong>count</strong> can also take a column name as argument and report how many of non-missing entries in that specific column. for this example we will create a new dataframe as Y.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">       id|charges|payment_method</span>
+<span class="s2">       634-VHG|28|Cheque</span>
+<span class="s2">       365-DQC|33.5|Credit card</span>
+<span class="s2">       264-PPR|631|--</span>
+<span class="s2">       845-AJO|42.3|</span>
+<span class="s2">       789-KPO|56.9|Bank Transfer</span>
+<span class="s2">       &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read the data</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">fread</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">na_strings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="p">[:,</span><span class="n">count</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">payment_method</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>payment_method</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='integer' title='int64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>3</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>1 row &times; 1 column</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>Here its simpy shows the count of payment methods are 3 and the remaining 2 observations are ignored</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="SO_faqs.html" title="previous page">Frequently Asked Questions</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sr.Mallesham Yamulla<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

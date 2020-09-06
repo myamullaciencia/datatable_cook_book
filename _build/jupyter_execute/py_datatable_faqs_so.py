@@ -1,9 +1,11 @@
-# py_datatable wiki 
+# py_datatable Q & A Notebook
 
 # Importing the necessary libraries
 import datatable as dt
 from datatable import f,by,count,sum,update,sort
 dt.init_styles()
+dt.options.display.head_nrows=4
+dt.options.display.tail_nrows=4
 
 ## 1. Data Manipulations
 
@@ -97,7 +99,7 @@ Here its simpy shows the count of payment methods are 3 and the remaining 2 obse
 
 ### 1.3 How to type cast a dataframe column in pydatatable?
 
-We will create a dataframe with three columns such as cust_id,sales,profit_perc.
+We will create a dataframe with four columns such as cust_id,sales,profit_perc, and default
 
 sales_DT = dt.Frame(
 
@@ -123,9 +125,11 @@ Here are some key points:
 
 -  profict_perc is a type of string, here it should be a float type
 
-**Note:** We have a syntax to be followed when we are to converting a column datatype from one to another as below
+-  default is a type of int and it should be a bool
 
-                                                DT['Column_name']= new data type (int,floar,str etc etc)
+**Note** : We have a syntax to be followed when we are to converting a column datatype from one to another as below
+
+                           DT['Column_name']= new data type (int,floar,str,bool)
 
 First, we will now try to apply the above formula on conveting a column type from float(**cust_id**) to integer 
 
@@ -158,7 +162,63 @@ sales_DT
 
 That is OK, you have noticed or tried converting a column from string to any other types **(int,float,bool)**
 
-sales_DT['profit_perc'] = float
+#sales_DT['profit_perc'] = float
 
-**Note:** String to other type converions are not yet implemented in datatable versions till 0.10.1 and they would be surely implemented in the upcoming versions.
+**Note** : String to other type converions are not yet implemented in datatable versions till 0.10.1 and they would be surely implemented in the upcoming versions.
+
+### 1.4 How to select columns based on their data types?
+
+We will import a data from a specified URL source for this example as-
+
+spotify_songs_dt = dt.fread('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
+
+Datafram dimensions(rows,columns) can be checked as below
+
+spotify_songs_dt.shape
+
+Spotify dataframe has come with about 32K observations and 23 columns and the columns types can be viewed as
+
+spotify_songs_dt.stypes
+
+We would just like to take a look at the fields which are an any  type of ( int or string or bool or float ) etc etc. let us understand how it can be achived in py-datatable. we are already familiarized with datatable I,J sytax style as below. In J would always be made use to select the columns based  on given names or indices etc etc.. The required datatypes should be entered in the J expression so that it will display the respective observations.
+
+                                DT[:,J]
+
+Well, In a first attempt let us retrive the observations for all the interger columns as - 
+
+spotify_songs_dt[:,dt.int32]
+
+In a second attempt, we would like to see both float and bool type columns, and the below is the solution for it.
+
+spotify_songs_dt[:,[dt.float64,dt.bool8]]
+
+So here we have learnt that if more than one type of columns are required to be selected the types should be passed in J expression using a list i.e [dt.int32,dt.str32,dt.bool8] 
+
+**Note** : In above two cases we have limited the output observations for 5 only. 
+
+### 1.5 How do deselect columns from dataframe?
+
+Deselecting the columns from dataframe is as important as selecting the columns. Deselection of columns can be done in J position itself specifying a function called **removed** along with the f expressions. let us look at the syntax first.
+
+                DT[:,f[:].remove(cols to be kept a side)]
+
+Here is our first example - deselect a column track_id from the spotify dataframe.
+
+spotify_songs_dt[:,f[:].remove(f.track_id)]
+
+In a second case - deselect these four columns(track_album_id,track_album_name,playlist_name,playlist_genre) from spotify dataframe - 
+
+spotify_songs_dt[:,f[:].remove([f.track_album_id,f.track_album_name,f.playlist_name,f.playlist_genre])]
+
+Here we have given a column names in a list and let us understand the anotomy of this syntax. 
+
+- f[:]: it selects all the columns
+
+- f[:].remove([f.x,f.y,f.z]) will deselect these three columns from others
+
+
+
+What if our requirement is based on a type of column, of course it can also be achived with the same syntax as follows. and here we are deselecting all the string type columns from spotify dataframe.
+
+spotify_songs_dt[:,f[:].remove(f[dt.str32])]
 

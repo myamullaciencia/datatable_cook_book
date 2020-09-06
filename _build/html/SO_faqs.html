@@ -166,14 +166,7 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-sort-a-datatable-frame-column-in-ascending-descending-order">
-   1. How to sort a datatable frame column in ascending/descending order
-  </a>
- </li>
-</ul>
-
+            
         </nav>
     </div>
 </div>
@@ -184,30 +177,10 @@
                 
   <div class="section" id="frequently-asked-questions">
 <h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="how-to-sort-a-datatable-frame-column-in-ascending-descending-order">
-<h2>1. How to sort a datatable frame column in ascending/descending order<a class="headerlink" href="#how-to-sort-a-datatable-frame-column-in-ascending-descending-order" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">datatable</span> <span class="k">as</span> <span class="nn">dt</span>                                                                                                                   
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">datatable</span> <span class="kn">import</span> <span class="n">f</span><span class="p">,</span> <span class="n">sort</span>                                                                                                            
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">A</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">product</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;apples&quot;</span><span class="p">,</span> <span class="s2">&quot;spam&quot;</span><span class="p">,</span> <span class="s2">&quot;goo&quot;</span><span class="p">,</span> <span class="s2">&quot;bobcat&quot;</span><span class="p">,</span> <span class="s2">&quot;gold&quot;</span><span class="p">],</span>  
-   <span class="o">...</span><span class="p">:</span>                  <span class="n">totals</span><span class="o">=</span><span class="p">[</span><span class="mf">5.4</span><span class="p">,</span> <span class="mf">2.777</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">11.1</span><span class="p">])</span>                                                                                    
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">A</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">sort</span><span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="o">.</span><span class="n">totals</span><span class="p">)]</span>                                                                                                                 
-<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> 
-   <span class="o">|</span> <span class="n">product</span>  <span class="n">totals</span>
-<span class="o">--</span> <span class="o">+</span> <span class="o">-------</span>  <span class="o">------</span>
- <span class="mi">0</span> <span class="o">|</span> <span class="n">gold</span>     <span class="mf">11.1</span>  
- <span class="mi">1</span> <span class="o">|</span> <span class="n">apples</span>    <span class="mf">5.4</span>  
- <span class="mi">2</span> <span class="o">|</span> <span class="n">bobcat</span>    <span class="mf">2.9</span>  
- <span class="mi">3</span> <span class="o">|</span> <span class="n">spam</span>      <span class="mf">2.777</span>
- <span class="mi">4</span> <span class="o">|</span> <span class="n">goo</span>       <span class="mf">0.1</span>  
-
-<span class="p">[</span><span class="mi">5</span> <span class="n">rows</span> <span class="n">x</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">]</span>
-</pre></div>
-</div>
+<p>Py-datatable is new to the analysts/scientists/developers communities, since it is new to them they would definitely have queries/questions/doubts about the functionalities,such where to start, what/how does each function work, runtime errors,what would happen if any of these functions used, comparing the functionalities with other open source data manipulation packages etc etc ..</p>
+<p>I have been exploring the py-datatable since 2019, I have been posting the questions and answering to others questions on StackoverFlow  under the tag :  <strong>py-datatable</strong></p>
+<p>I’m thinking of creating a central repository of these posts with the comprehensive explanations in notebooks where analysts can easily reproduce and explore further.</p>
 <div class="toctree-wrapper compound">
-</div>
 </div>
 </div>
 

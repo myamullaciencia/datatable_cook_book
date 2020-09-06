@@ -203,6 +203,11 @@
      1.2 How to count the number of instances for each category using group by in pydatadable?
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-type-cast-a-dataframe-column-in-pydatatable">
+     1.3 How to type cast a dataframe column in pydatatable?
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -219,7 +224,8 @@
 <h1>py_datatable wiki<a class="headerlink" href="#py-datatable-wiki" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datatable</span> <span class="k">as</span> <span class="nn">dt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing the necessary libraries</span>
+<span class="kn">import</span> <span class="nn">datatable</span> <span class="k">as</span> <span class="nn">dt</span>
 <span class="kn">from</span> <span class="nn">datatable</span> <span class="kn">import</span> <span class="n">f</span><span class="p">,</span><span class="n">by</span><span class="p">,</span><span class="n">count</span><span class="p">,</span><span class="nb">sum</span><span class="p">,</span><span class="n">update</span><span class="p">,</span><span class="n">sort</span>
 <span class="n">dt</span><span class="o">.</span><span class="n">init_styles</span><span class="p">()</span>
 </pre></div>
@@ -581,6 +587,150 @@
 </div></div>
 </div>
 <p>Here its simpy shows the count of payment methods are 3 and the remaining 2 observations are ignored</p>
+</div>
+<div class="section" id="how-to-type-cast-a-dataframe-column-in-pydatatable">
+<h3>1.3 How to type cast a dataframe column in pydatatable?<a class="headerlink" href="#how-to-type-cast-a-dataframe-column-in-pydatatable" title="Permalink to this headline">¶</a></h3>
+<p>We will create a dataframe with three columns such as cust_id,sales,profit_perc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span>
+
+    <span class="p">{</span><span class="s2">&quot;cust_id&quot;</span><span class="p">:[</span><span class="mf">893232.43</span><span class="p">],</span>
+     
+     <span class="s2">&quot;sales&quot;</span><span class="p">:[</span><span class="mi">1234532</span><span class="p">],</span>
+     
+     <span class="s2">&quot;profit_perc&quot;</span><span class="p">:[</span><span class="s1">&#39;10.43&#39;</span><span class="p">],</span>
+     
+     <span class="s2">&quot;default&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check the each column datatype as below -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="o">.</span><span class="n">stypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(stype.float64, stype.int32, stype.str32, stype.int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here are some key points:</p>
+<ul class="simple">
+<li><p>cust_id is a type of float but in general customer id should be eigther integer or string type</p></li>
+<li><p>sales is a type of int, it should not always be an integer and it may also be in float types</p></li>
+<li><p>profict_perc is a type of string, here it should be a float type</p></li>
+</ul>
+<p><strong>Note:</strong> We have a syntax to be followed when we are to converting a column datatype from one to another as below</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                                            DT[&#39;Column_name&#39;]= new data type (int,floar,str etc etc)
+</pre></div>
+</div>
+<p>First, we will now try to apply the above formula on conveting a column type from float(<strong>cust_id</strong>) to integer</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;cust_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, let us verify the same whether it has become an integer type or not ?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="o">.</span><span class="n">stypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(stype.int32, stype.int32, stype.str32, stype.int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yes, it is converted. similarily we can convert a type from int(<strong>sales</strong>) to float and check.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;sales&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have a column default with int type and we can have it as bool type.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bool</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="o">.</span><span class="n">stypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(stype.int32, stype.float64, stype.str32, stype.bool8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So far we have seen the convertions from</p>
+<ul class="simple">
+<li><p>int to float</p></li>
+<li><p>float to int</p></li>
+<li><p>int to str</p></li>
+<li><p>float to string</p></li>
+<li><p>int to bool</p></li>
+<li><p>etc etc</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>cust_id</th><th>sales</th><th>profit_perc</th><th>default</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>893232</td><td>1.23453e+06</td><td>10.43</td><td>1</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>1 row &times; 4 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>That is OK, you have noticed or tried converting a column from string to any other types <strong>(int,float,bool)</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">24</span><span class="o">-</span><span class="mi">8</span><span class="n">ac3eb52bc29</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+
+<span class="ne">NotImplementedError</span>: Unable to cast `str32` into `float64`
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> String to other type converions are not yet implemented in datatable versions till 0.10.1 and they would be surely implemented in the upcoming versions.</p>
 </div>
 </div>
 </div>

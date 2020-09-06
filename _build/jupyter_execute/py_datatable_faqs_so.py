@@ -1,5 +1,6 @@
 # py_datatable wiki 
 
+# Importing the necessary libraries
 import datatable as dt
 from datatable import f,by,count,sum,update,sort
 dt.init_styles()
@@ -93,4 +94,71 @@ Y = dt.fread(data, na_strings=['--', ''])
 Y[:,count(f.payment_method)]
 
 Here its simpy shows the count of payment methods are 3 and the remaining 2 observations are ignored
+
+### 1.3 How to type cast a dataframe column in pydatatable?
+
+We will create a dataframe with three columns such as cust_id,sales,profit_perc.
+
+sales_DT = dt.Frame(
+
+    {"cust_id":[893232.43],
+     
+     "sales":[1234532],
+     
+     "profit_perc":['10.43'],
+     
+     "default":[1]
+    }
+)
+
+Check the each column datatype as below - 
+
+sales_DT.stypes
+
+Here are some key points:
+
+-  cust_id is a type of float but in general customer id should be eigther integer or string type
+
+-  sales is a type of int, it should not always be an integer and it may also be in float types
+
+-  profict_perc is a type of string, here it should be a float type
+
+**Note:** We have a syntax to be followed when we are to converting a column datatype from one to another as below
+
+                                                DT['Column_name']= new data type (int,floar,str etc etc)
+
+First, we will now try to apply the above formula on conveting a column type from float(**cust_id**) to integer 
+
+sales_DT['cust_id'] = int
+
+Here, let us verify the same whether it has become an integer type or not ?
+
+sales_DT.stypes
+
+Yes, it is converted. similarily we can convert a type from int(**sales**) to float and check.
+
+sales_DT['sales'] = float
+
+We have a column default with int type and we can have it as bool type.
+
+sales_DT['default'] = bool
+
+sales_DT.stypes
+
+So far we have seen the convertions from 
+
+- int to float
+- float to int 
+- int to str 
+- float to string 
+- int to bool
+- etc etc 
+
+sales_DT
+
+That is OK, you have noticed or tried converting a column from string to any other types **(int,float,bool)**
+
+sales_DT['profit_perc'] = float
+
+**Note:** String to other type converions are not yet implemented in datatable versions till 0.10.1 and they would be surely implemented in the upcoming versions.
 

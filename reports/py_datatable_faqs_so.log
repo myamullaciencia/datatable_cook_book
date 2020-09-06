@@ -17,14 +17,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-sales_DT['profit_perc'] = float
+dt.cbind(payments_dt,payment_default_1)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNotImplementedError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-24-8ac3eb52bc29>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0msales_DT[0m[0;34m[[0m[0;34m'profit_perc'[0m[0;34m][0m [0;34m=[0m [0mfloat[0m[0;34m[0m[0;34m[0m[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-62-4abcb74a84ca>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mdt[0m[0;34m.[0m[0mcbind[0m[0;34m([0m[0mpayments_dt[0m[0;34m,[0m[0mpayment_default_1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
-[0;31mNotImplementedError[0m: Unable to cast `str32` into `float64`
-NotImplementedError: Unable to cast `str32` into `float64`
+[0;31mValueError[0m: Cannot cbind frame with 10 rows to a frame with 11 rows. Use `force=True` to disregard this check and merge the frames anyways.
+ValueError: Cannot cbind frame with 10 rows to a frame with 11 rows. Use `force=True` to disregard this check and merge the frames anyways.
 

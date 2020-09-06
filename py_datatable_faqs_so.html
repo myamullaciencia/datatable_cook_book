@@ -233,6 +233,16 @@
      1.8 How to modify or update column values on a condition?
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-add-a-new-column-to-a-dataframe">
+     1.9 How to add a new column to a dataframe ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-add-new-observations-to-dataframe">
+     1.10 How to add new observations to dataframe ?
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -743,17 +753,7 @@
 <p>That is OK, you have noticed or tried converting a column from string to any other types <strong>(int,float,bool)</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">24</span><span class="o">-</span><span class="mi">8</span><span class="n">ac3eb52bc29</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sales_DT</span><span class="p">[</span><span class="s1">&#39;profit_perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
-
-<span class="ne">NotImplementedError</span>: Unable to cast `str32` into `float64`
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#sales_DT[&#39;profit_perc&#39;] = float</span>
 </pre></div>
 </div>
 </div>
@@ -1391,13 +1391,19 @@
 </div>
 <div class="section" id="how-to-modify-or-update-column-values-on-a-condition">
 <h3>1.8 How to modify or update column values on a condition?<a class="headerlink" href="#how-to-modify-or-update-column-values-on-a-condition" title="Permalink to this headline">¶</a></h3>
+<p>We are often required to modify the values of a column and it can be done following the below syntax -</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    DT[I-specify filter condition, J-Specify column name] = New value
+</pre></div>
+</div>
+<p>Assume we have a typo error in id columm for this observation <strong>“102-PPO”</strong>, and we want to change to to <strong>103-PPO</strong> -</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">),</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">]</span><span class="o">=</span><span class="mf">20.45</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">id</span><span class="o">==</span><span class="s2">&quot;102-PPO&quot;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;103-PPO&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>and it can be viewed with a updated value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span>
@@ -1418,11 +1424,11 @@
     <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td></tr>
     <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td></tr>
     <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>6</td><td>903-QPO</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
     <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td></tr>
-    <tr><td class='row_index'>8</td><td>102-PPO</td><td>26.9</td><td>Cash</td></tr>
+    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td></tr>
     <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td></tr>
-    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td></tr>
+    <tr><td class='row_index'>10</td><td>692-CPO</td><td><span class=na>NA</span></td><td>PhonePay</td></tr>
   </tbody>
   </table>
   <div class='footer'>
@@ -1431,9 +1437,10 @@
 </div>
 </div></div>
 </div>
+<p>We are now going to fill in NA’s with a specific value in charges column as below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">id</span><span class="o">==</span><span class="s2">&quot;102-PPO&quot;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;103-PPO&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">),</span><span class="n">f</span><span class="o">.</span><span class="n">charges</span><span class="p">]</span><span class="o">=</span><span class="mf">20.45</span>
 </pre></div>
 </div>
 </div>
@@ -1471,6 +1478,281 @@
 </div>
 </div></div>
 </div>
+</div>
+<div class="section" id="how-to-add-a-new-column-to-a-dataframe">
+<h3>1.9 How to add a new column to a dataframe ?<a class="headerlink" href="#how-to-add-a-new-column-to-a-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>We add on some new columns to the dataframe as on when required, it can be achieved in two ways in py-datable.</p>
+<ol class="simple">
+<li><p>a default value will be assigned to a newly created column</p></li>
+<li><p>bindind a new dataframe columns to the existing dataframe.</p></li>
+</ol>
+<p>Case 1: a new column <strong>default</strong> created with all True values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td><td>1</td></tr>
+    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td><td>1</td></tr>
+    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td><td>1</td></tr>
+    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td><td>1</td></tr>
+    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td><td>1</td></tr>
+    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td><td>1</td></tr>
+    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td><td>1</td></tr>
+    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td><td>1</td></tr>
+    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td><td>1</td></tr>
+    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td><td>1</td></tr>
+    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td><td>1</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>11 rows &times; 4 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>Case 2: we are going to bind the two dataframe columns as below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payment_default</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">defalut_col</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_new_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">cbind</span><span class="p">(</span><span class="n">payments_dt</span><span class="p">,</span><span class="n">payment_default</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payments_new_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th><th>defalut_col</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td><td>1</td><td>1</td></tr>
+    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td><td>1</td><td>1</td></tr>
+    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td><td>1</td><td>1</td></tr>
+    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td><td>1</td><td>1</td></tr>
+    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td><td>1</td><td>1</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>11 rows &times; 5 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>Case 3: We are trying to bind two dataframes which are having unequal number of observations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payment_default_1</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">defalut_col</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payment_default_1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">cbind</span><span class="p">(</span><span class="n">payments_dt</span><span class="p">,</span><span class="n">payment_default_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">62</span><span class="o">-</span><span class="mi">4</span><span class="n">abcb74a84ca</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dt</span><span class="o">.</span><span class="n">cbind</span><span class="p">(</span><span class="n">payments_dt</span><span class="p">,</span><span class="n">payment_default_1</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: Cannot cbind frame with 10 rows to a frame with 11 rows. Use `force=True` to disregard this check and merge the frames anyways.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">cbind</span><span class="p">(</span><span class="n">payments_dt</span><span class="p">,</span><span class="n">payment_default_1</span><span class="p">,</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th><th>defalut_col</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td><td>1</td><td>1</td></tr>
+    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td><td>1</td><td>1</td></tr>
+    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td><td>1</td><td>1</td></tr>
+    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td><td>1</td><td>1</td></tr>
+    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td></tr>
+    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td><td>1</td><td><span class=na>NA</span></td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>11 rows &times; 5 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p><strong>Note</strong> : It is recommended that both dataframes should have the equal number of observations, however if they are not equally sized an extra option <strong>force</strong> should be passed in with an option <strong>True</strong>, so that the targeted observations are filled with NA’s</p>
+</div>
+<div class="section" id="how-to-add-new-observations-to-dataframe">
+<h3>1.10 How to add new observations to dataframe ?<a class="headerlink" href="#how-to-add-new-observations-to-dataframe" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a dictionary with 5 key values</span>
+<span class="n">new_obs</span> <span class="o">=</span> <span class="p">{</span>
+    
+    <span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;123-AMS&#39;</span><span class="p">,</span><span class="s1">&#39;923-CIQ&#39;</span><span class="p">,</span><span class="s1">&#39;100-ICIC&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;charges&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">45.3</span><span class="p">,</span><span class="mf">90.3</span><span class="p">,</span><span class="mf">21.9</span><span class="p">],</span>
+    <span class="s1">&#39;payment_method&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Gpay&#39;</span><span class="p">,</span><span class="s1">&#39;Cheque&#39;</span><span class="p">,</span><span class="s1">&#39;Ppay&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;default&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">],</span>
+    <span class="s1">&#39;def_col&#39;</span><span class="p">:[</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">]</span>
+    
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># new dataframe created</span>
+<span class="n">payment_extra_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">new_obs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payment_extra_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th><th>def_col</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>123-AMS</td><td>45.3</td><td>Gpay</td><td>0</td><td>0</td></tr>
+    <tr><td class='row_index'>1</td><td>923-CIQ</td><td>90.3</td><td>Cheque</td><td>0</td><td>1</td></tr>
+    <tr><td class='row_index'>2</td><td>100-ICIC</td><td>21.9</td><td>Ppay</td><td>0</td><td>0</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>3 rows &times; 5 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p>We are now going to bind the rows of these two dataframes, here notice that the col <strong>def_col</strong> not existed in payments_new_dt, and let us see how this can be handled  below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">rbind</span><span class="p">(</span><span class="n">payments_new_dt</span><span class="p">,</span><span class="n">payment_extra_dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">299</span><span class="o">-</span><span class="mi">8</span><span class="n">ae74617f8d9</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dt</span><span class="o">.</span><span class="n">rbind</span><span class="p">(</span><span class="n">payments_new_dt</span><span class="p">,</span><span class="n">payment_extra_dt</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: Column `def_col` is not found in the original frame; if you want to rbind the frames anyways filling missing values with NAs, then use `force=True`
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">rbind</span><span class="p">(</span><span class="n">payments_new_dt</span><span class="p">,</span><span class="n">payment_extra_dt</span><span class="p">,</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>id</th><th>charges</th><th>payment_method</th><th>default</th><th>defalut_col</th><th>def_col</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td><td class='boolean' title='bool8'>&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>634-VHG</td><td>28</td><td>Cheque</td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>1</td><td>365-DQC</td><td>33.5</td><td>Credit card</td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>2</td><td>264-PPR</td><td>631</td><td><span class=na>NA</span></td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>3</td><td>845-AJO</td><td>42.3</td><td><span class=na>NA</span></td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>4</td><td>769-LPO</td><td>56.9</td><td>Gpay</td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>5</td><td>529-GPO</td><td>56.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>6</td><td>903-QPO</td><td>20.45</td><td><span class=na>NA</span></td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>7</td><td>234-CPO</td><td>89.9</td><td>Bank Transfer</td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>8</td><td>103-PPO</td><td>26.9</td><td>Cash</td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>9</td><td>303-LPO</td><td>16.9</td><td><span class=na>NA</span></td><td>1</td><td>0</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>10</td><td>692-CPO</td><td>20.45</td><td>PhonePay</td><td>1</td><td>1</td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>11</td><td>123-AMS</td><td>45.3</td><td>Gpay</td><td>0</td><td><span class=na>NA</span></td><td>0</td></tr>
+    <tr><td class='row_index'>12</td><td>923-CIQ</td><td>90.3</td><td>Cheque</td><td>0</td><td><span class=na>NA</span></td><td>1</td></tr>
+    <tr><td class='row_index'>13</td><td>100-ICIC</td><td>21.9</td><td>Ppay</td><td>0</td><td><span class=na>NA</span></td><td>0</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>14 rows &times; 6 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<p><strong>Note</strong> : It is recommended that both dataframes should have the same columns, however if they are not same an extra option <strong>force</strong> should be passed in with an option <strong>True</strong> so that the column values will be filled in with NA’s</p>
 </div>
 </div>
 </div>

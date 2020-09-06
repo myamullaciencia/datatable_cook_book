@@ -162,7 +162,7 @@ sales_DT
 
 That is OK, you have noticed or tried converting a column from string to any other types **(int,float,bool)**
 
-sales_DT['profit_perc'] = float
+#sales_DT['profit_perc'] = float
 
 **Note** : String to other type converions are not yet implemented in datatable versions till 0.10.1 and they would be surely implemented in the upcoming versions.
 
@@ -323,11 +323,80 @@ Here we can see that there is only one observation having NA's for both of these
 
 ### 1.8 How to modify or update column values on a condition?
 
+We are often required to modify the values of a column and it can be done following the below syntax -
+
+        DT[I-specify filter condition, J-Specify column name] = New value
+
+Assume we have a typo error in id columm for this observation **"102-PPO"**, and we want to change to to **103-PPO** - 
+
+payments_dt[f.id=="102-PPO",f.id]="103-PPO"
+
+and it can be viewed with a updated value.
+
+payments_dt
+
+We are now going to fill in NA's with a specific value in charges column as below. 
+
 payments_dt[dt.isna(f.charges),f.charges]=20.45
 
 payments_dt
 
-payments_dt[f.id=="102-PPO",f.id]="103-PPO"
+### 1.9 How to add a new column to a dataframe ?
+
+We add on some new columns to the dataframe as on when required, it can be achieved in two ways in py-datable.
+
+1. a default value will be assigned to a newly created column
+
+2. bindind a new dataframe columns to the existing dataframe.
+
+Case 1: a new column **default** created with all True values
+
+payments_dt['default'] = True
 
 payments_dt
 
+Case 2: we are going to bind the two dataframe columns as below
+
+payment_default = dt.Frame(defalut_col=[True,False,True,False,True,False,False,True,False,False,True])
+
+payments_new_dt = dt.cbind(payments_dt,payment_default)
+
+payments_new_dt
+
+Case 3: We are trying to bind two dataframes which are having unequal number of observations.
+
+payment_default_1 = dt.Frame(defalut_col=[True,False,True,False,True,False,False,True,False,False])
+
+payment_default_1.shape
+
+dt.cbind(payments_dt,payment_default_1)
+
+dt.cbind(payments_dt,payment_default_1,force=True)
+
+**Note** : It is recommended that both dataframes should have the equal number of observations, however if they are not equally sized an extra option **force** should be passed in with an option **True**, so that the targeted observations are filled with NA's
+
+### 1.10 How to add new observations to dataframe ?
+
+# a dictionary with 5 key values
+new_obs = {
+    
+    'id' : ['123-AMS','923-CIQ','100-ICIC'],
+    'charges': [45.3,90.3,21.9],
+    'payment_method': ['Gpay','Cheque','Ppay'],
+    'default' : [False,False,False],
+    'def_col':[False,True,False]
+    
+}
+
+# new dataframe created
+payment_extra_dt = dt.Frame(new_obs)
+
+payment_extra_dt
+
+We are now going to bind the rows of these two dataframes, here notice that the col **def_col** not existed in payments_new_dt, and let us see how this can be handled  below.
+
+dt.rbind(payments_new_dt,payment_extra_dt)
+
+dt.rbind(payments_new_dt,payment_extra_dt,force=True)
+
+**Note** : It is recommended that both dataframes should have the same columns, however if they are not same an extra option **force** should be passed in with an option **True** so that the column values will be filled in with NA's

@@ -3,6 +3,7 @@
   sections:
     - file: Py_Seattle_Bikes_tidy_data_wrangling_pydatatable
     - file: py_dt_penguins
+    - file: py_police_activity_analysis
     
 - file: SO_faqs
   sections:

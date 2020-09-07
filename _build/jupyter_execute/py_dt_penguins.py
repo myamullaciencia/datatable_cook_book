@@ -1,4 +1,4 @@
-# Data wrangling and modeling on Penguins dataset using pydatatable
+# Py: Tidy data analysis - Penguins
 
 # Loading libraries 
 import datatable as dt

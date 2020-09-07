@@ -1,27 +1,14 @@
-# Introduction to Data Wrangling using pydatatable
+# Py: Tidy data analysis - Seattle Bikes 
 
-# 1. Objective
+### 1. Objective
 
 **This notebook would  teach yours how to get started doing your data analysis in Pydatatable way. It’s seamlessly process your higher volumes of data in a faster manner unlike other python data handling libraries. to get along with it you have to be comfortable with SQL querying, basic python programming and basic mathematics.** 
 
-# 2. Introduction to pydatatable
-
-**Pydatatable is an extremely fast and memory efficient package for transforming data in python, which is similar to R data.table package. It's silent features are** 
-
-1. Concise syntax: fast to type, fast to read
-2. Fast speed
-3. Memory efficient
-4. Careful API lifecycle management
-5. Support from H2O's team and growing community
-6. Open sourced project
-
-**Note:** Refer H2O's pydatatable documentation for more info
-
-# 3. Exploratory Data Analysis on Seattle Bike traffic data
+### 2. Exploratory Data Analysis
 
 * I'm going to use **Tidy Tuesday(R4DS Online learning community)'s** project data - Seattle Bike traffic for this notebook, here they do release an interesting dataset weekly once to get our hands dirty with it and enhance our EDA Skills.
 
-## 3.1 Setup libraries 
+#### 3.1 Setup libraries 
 
 * It's an easy step to download datatable into python environment and it can be installed from **PyPi** pip as showed in below chunk.
 
@@ -47,7 +34,7 @@ plt.style.use('ggplot')
 
 print(f'The loaded datable version is : {dt.__version__}')
 
-## 3.2 Importing data
+### 3.2 Importing data
 
 1. A file will be loaded and stored into our environment in the form of rows and columns for further analysis by calling a function  **fread** from dt, and it supports various file (csv/xlsx/txt/jay etc.. etc...) formats.
 2. We can load data from our local system or from any spcific web resource
@@ -58,7 +45,7 @@ print(f'The loaded datable version is : {dt.__version__}')
 # Importing data
 seattle_bikes_dt = dt.fread("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-02/bike_traffic.csv")
 
-## 3.3 Introduction to data and basic data manipulations in pydatatable
+### 3.3 Introduction to data and basic data manipulations in pydatatable
 
 ##### Notes: 
 1. Seattle bike data has been downloaded via web resource and created a datatable frame with a name **seattle_bikes_dt**
@@ -186,9 +173,7 @@ seatle_bikes_dt_tidy['ped_count']=dt.bool8
 # Viewing observations whose ped_count is not NA's
 seatle_bikes_dt_tidy[~dt.isna(f.ped_count),:]
 
-### Part-B
-
-## EDA Questions:
+### EDA Questions:
 
 1. How many of bikes/pedestrains have passed though the different crossings?
 2. How many of bikes/pedestrains have gone from the direction?
@@ -200,9 +185,7 @@ seatle_bikes_dt_tidy[~dt.isna(f.ped_count),:]
 8. When in months? do people bike through these Seattle crossings ? 
 9. In which directions do people commute by bike?
 
-
-
-### 3 . EDA - 1 : How many of bikes/pedestrains have passed though the different crossings?
+#### 3 . EDA - 1 : How many of bikes/pedestrains have passed though the different crossings?
 
 # Data manipulation and Visualization
 alt.Chart(seatle_bikes_dt_tidy[:,count(),by(f.crossing)
@@ -218,7 +201,7 @@ alt.Chart(seatle_bikes_dt_tidy[:,count(),by(f.crossing)
 4. DT has to be converted to a pandas DF as we are going to do a visualization on the resulted DT.
 5. As said earlier Seaborn/matplotlibs are not yet supporting Datatable Frame object
 
-### 3 . EDA - 2 : How many of bikes/pedestrains have gone from the direction?
+#### 3 . EDA - 2 : How many of bikes/pedestrains have gone from the direction?
 
 # Data vis and Manipulation
 alt.Chart(seatle_bikes_dt_tidy[:,count(),by(f.direction)
@@ -231,7 +214,7 @@ alt.Chart(seatle_bikes_dt_tidy[:,count(),by(f.direction)
 1. It's manipulation sytax is as same as to EDA -1
 
 
-### 3 . EDA- 3: How many of bikes/pedestrians have passed though crossings from different directions?
+#### 3 . EDA- 3: How many of bikes/pedestrians have passed though crossings from different directions?
 
 # Data Vis
 alt.Chart(seatle_bikes_dt_tidy[:,{
@@ -244,7 +227,7 @@ alt.Chart(seatle_bikes_dt_tidy[:,{
 
 Grouping performed on two fields: direction and crossing specified in f-expression, their counts gets assigned to a variable named total, and it's temporarily created for our reference purpose or further manipulation if it was to be continued      
 
-### 3. EDA - 4 : How have been Seattle - Bike traffic trends over the years?
+#### 3. EDA - 4 : How have been Seattle - Bike traffic trends over the years?
 
 # Data Vis
 alt.Chart(seatle_bikes_dt_tidy[:,count(),by(f.year)].to_pandas()).mark_line().encode(alt.X('year:N'),alt.Y('count'))
@@ -264,7 +247,7 @@ seatle_bikes_dt_tidy[:,{
 
 dt.isna is a function to check an observation is a Null or Not, here how many of ped_count NA's per year and crossing were caluclated  
 
-### 3. EDA - 5: When in the day(Hours) do people bike through these Seattle crossings ?
+#### 3. EDA - 5: When in the day(Hours) do people bike through these Seattle crossings ?
 
 alt.Chart(seatle_bikes_dt_tidy[:,{'bike_count':dt.sum(f.bike_count)},by(f.crossing,f.hour)
                     ][:,{'hour':f.hour,
@@ -356,7 +339,7 @@ seatle_bikes_per_crossing_dt[:,first(f[1:]),by(f.crossing)]
 # A last observation per each crossing
 seatle_bikes_per_crossing_dt[:,last(f[1:]),by(f.crossing)]
 
-### 3 . EDA - 6 : When in the day(Time Intervals)  do people bike through these Seattle crossings?
+#### 3 . EDA - 6 : When in the day(Time Intervals)  do people bike through these Seattle crossings?
 
 # Visualization
 alt.Chart(seatle_bikes_per_crossing_dt.to_pandas()).mark_bar().encode(alt.X('bike_percent_cross'),alt.Y('time_window',sort='-x'))
@@ -380,13 +363,13 @@ seatle_bikes_per_crossing_days_dt = seatle_bikes_dt_tidy_v_1[:,{
 # glance at DT
 seatle_bikes_per_crossing_days_dt
 
-### 3. EDA - 7 : When in days do people bike through these Seattle crossings ?
+#### 3. EDA - 7 : When in days do people bike through these Seattle crossings ?
 
 alt.Chart(seatle_bikes_per_crossing_days_dt.to_pandas()).mark_bar().encode(
     alt.Y('week_day'),alt.X('bike_percent_cross')
 ).properties(width=220,height=180).facet(facet='crossing',columns=4)
 
-### 3. EDA - 8 : When in months? do people bike through these Seattle crossings ?
+#### 3. EDA - 8 : When in months? do people bike through these Seattle crossings ?
 
 # Creating a DT
 seatle_bikes_per_crossing_months_dt = seatle_bikes_dt_tidy_v_1[:,{
@@ -407,7 +390,7 @@ alt.Chart(seatle_bikes_per_crossing_months_dt.to_pandas()).mark_bar().encode(
     alt.Y('month:N'),alt.X('bike_percent_cross'),alt.Color('crossing',legend=None)
 ).properties(width=220,height=180).facet(facet='crossing',columns=4)
 
-### 3. EDA - 9 : In which directions do people commute by bike?
+#### 3. EDA - 9 : In which directions do people commute by bike?
 
 # Creating a DT
 seatle_bikes_per_crossing_day_hour_dt = seatle_bikes_dt_tidy_v_1[:,{
@@ -429,7 +412,7 @@ alt.Chart(seatle_bikes_per_crossing_day_hour_dt.to_pandas()).mark_bar().encode(
     alt.X('hour:N'),alt.Y('bike_percent_cross'),alt.Color('week_day',legend=None)
 ).properties(width=280,height=160).facet(facet='week_day',columns=4)
 
-# 4. References and Recommendations
+### 4. References and Recommendations
 
 1. Pydatatable documentation : [https://datatable.readthedocs.io/en/latest/index.html](http://)
 

@@ -4,6 +4,7 @@
     - file: py_seattle_bikes_tidy_data_analysis
     - file: py_dt_penguins
     - file: py_dt_policia
+    - file: py_dt_global_crop_yields
     
 - file: SO_faqs
   sections:

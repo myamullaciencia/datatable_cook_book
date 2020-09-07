@@ -1,6 +1,6 @@
-# Police activity data analysis 
+# Py: Tidy data analysis - Police traffic activity 
 
-We are going to make use of data from a open source project https://openpolicing.stanford.edu/
+We are going to make use of data from a open source project https://openpolicing.stanford.edu/ and we have collected data belongs to the state: Rhode Island for this analysis.
 
 # Importing libraries
 import datatable as dt
@@ -33,6 +33,8 @@ weather_dt.names = {'DATE': "stop_date",
                     'TMAX': "temp_max"}
 
 weather_dt
+
+weather_dt.key="stop_date"
 
 # count the number of missing values
 policia_dt.countna()
@@ -112,8 +114,10 @@ stop_time_hour_dt.names={'0':'stop_hour'}
 # Binding two dts
 policia_tidy_dt_v1 = dt.cbind(policia_tidy_dt,stop_time_hour_dt)
 
+# Hour wise arrests
 hour_wise_arrests_dt = py_dt_two_group_proportions_summary(policia_tidy_dt_v1,'stop_hour','is_arrested')
 
+# Visualization
 alt.Chart(hour_wise_arrests_dt.to_pandas()).mark_bar().encode(
     alt.X('stop_hour:N'),
     alt.Y('count'),
@@ -123,10 +127,12 @@ alt.Chart(hour_wise_arrests_dt.to_pandas()).mark_bar().encode(
     title= 'Hour wise arrest trends'
 )
 
+# Hour wise arrest rates
 hour_wise_arrests_rates_dt= hour_wise_arrests_dt[f.is_arrested==True,:
                                                 ][:,dt.mean(f.count),by(f.stop_hour)
                                                  ]
 
+# Visualization
 alt.Chart(hour_wise_arrests_rates_dt.to_pandas()).mark_line().encode(
     alt.X('stop_hour'),
     alt.Y('count')
@@ -148,20 +154,21 @@ stop_year_month_dt = dt.cbind(dt.Frame({'year':list(stop_date_df['stop_date'].dt
                               dt.Frame({'month':list(stop_date_df['stop_date'].dt.month)})
                              )
 
+# Joining two DTs
 policia_tidy_dt_v2 = dt.cbind(policia_tidy_dt_v1,stop_year_month_dt
                              )[:,f[:].remove([f[0],f[1]])]
 
+# Year wise counts drug related stops
 policia_tidy_dt_v2[f.drugs_related_stop==True,:
-                  ][:,count(),by(f.year)]
+                  ][:,count(),by(f.year)
+                   ]
 
-policia_tidy_dt_v2
-
-weather_dt.key="stop_date"
-
+# Joining police and weather dataframes
 policia_tidy_dt_v3 = policia_dt[:,:,join(weather_dt)]
 
 weather_dt
 
+# Visualization
 alt.Chart(weather_dt.to_pandas()).transform_fold(
     
     ['temp_avg','temp_min','temp_max'],
@@ -174,28 +181,60 @@ alt.Chart(weather_dt.to_pandas()).transform_fold(
     
 ).properties(title='Weather temp distributions')
 
+# Adding a new column temp_diff
 weather_dt[:,update(temp_diff=f.temp_max-f.temp_min)]
 
-alt.Chart(weather_dt[:,f.temp_diff].to_pandas()).mark_bar().encode(alt.X('temp_diff',bin=True),alt.Y('count()'))
-
-weather_temp = dt.fread('https://assets.datacamp.com/production/repositories/1497/datasets/02f3fb2d4416d3f6626e1117688e0386784e8e55/weather.csv',na_strings=[""])
-
-weather_temp_1 = weather_temp[:,[f[1],f[7:]]]
-
-weather_temp_1
-
-weather_temp_2 = weather_temp_1[:,{'tot_cond':dt.rowsum(f[1:])}]
-
-weather_temp_1[:,update(tot_cond=dt.rowsum(f[1:]))]
-
-weather_temp_2 = weather_temp_1[:,[f[0],f[-1]]]
-
-weather_temp_2
-
-alt.Chart(weather_temp_2.to_pandas()).mark_bar().encode(
-    alt.X('tot_cond',bin=True),
+# Visualiztion
+alt.Chart(weather_dt[:,f.temp_diff].to_pandas()).mark_bar().encode(
+    alt.X('temp_diff',bin=True),
     alt.Y('count()')
+).properties(
+
+    title='Distribution of temparature differences'
 )
 
-policia_tidy_dt_v3
+# Downloading weather data and selecting specific columns related to weather conditions
+weather_temp = dt.fread('https://assets.datacamp.com/production/repositories/1497/datasets/02f3fb2d4416d3f6626e1117688e0386784e8e55/weather.csv',na_strings=[""]
+                       )[:,[f[1],f[7:]]]
+
+weather_temp
+
+# New column : sum of rows
+weather_temp[:,update(tot_cond=dt.rowsum(f[1:]))]
+
+# select few columms
+weather_temp_1= weather_temp[:,[f[0],f[-1]]]
+
+# renaming dataframe column
+weather_temp_1.names = {'DATE':'stop_date'}
+
+# apply a key
+weather_temp_1.key="stop_date"
+
+# Visualization
+alt.Chart(weather_temp_1.to_pandas()).mark_bar().encode(
+    alt.X('tot_cond',bin=True),
+    alt.Y('count()')
+).properties(
+    title='Weather conditions distribution'
+)
+
+# Joining two dataframes
+policia_tidy_dt_v4 = policia_tidy_dt_v3[:,:,join(weather_temp_1)]
+
+# selecting first 5 and last 4 columns
+policia_tidy_dt_v4[:,[f[:5],f[-4:]]]
+
+# Speed violation 
+policia_zone_speed_violations_weather = py_dt_two_group_proportions_summary(policia_tidy_dt_v4[f.violation=="Speeding",:],'district','tot_cond')
+
+# Visualization
+alt.Chart(policia_zone_speed_violations_weather.to_pandas()).mark_bar().encode(
+    alt.Y('district'),
+    alt.X('count'),
+    alt.Color('tot_cond')
+).properties(
+
+    title='Speed Violations - Disticts and weather conditions'
+)
 

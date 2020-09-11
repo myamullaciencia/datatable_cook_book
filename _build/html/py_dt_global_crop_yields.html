@@ -1,0 +1,537 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Py : Tidy data analysis - Global Crop Yields &#8212; (py)datatable cookbook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Frequently Asked Questions" href="SO_faqs.html" />
+    <link rel="prev" title="Py: Tidy data analysis - Police traffic activity" href="py_dt_policia.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/py_datatable_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">(py)datatable cookbook</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Data Wrangling using py-datatable
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="ucases.html">
+   Exploratory Data Analysis
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="py_seattle_bikes_tidy_data_analysis.html">
+     Py: Tidy data analysis - Seattle Bikes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="py_dt_penguins.html">
+     Py: Tidy data analysis - Penguins
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="py_dt_policia.html">
+     Py: Tidy data analysis - Police traffic activity
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Py : Tidy data analysis - Global Crop Yields
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SO_faqs.html">
+   Frequently Asked Questions
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/py_dt_global_crop_yields.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/py_dt_global_crop_yields.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/py_dt_global_crop_yields.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="py-tidy-data-analysis-global-crop-yields">
+<h1>Py : Tidy data analysis - Global Crop Yields<a class="headerlink" href="#py-tidy-data-analysis-global-crop-yields" title="Permalink to this headline">¶</a></h1>
+<p><strong>Introduction</strong> :</p>
+<p>Our data on agricultural yields across crop types and by country are much more extensive from 1960 onwards. The UN Food and Agricultural Organization (FAO) publish yield estimates across a range of crop commodities by country over this period. The FAO report yield values as the national average for any given year; this is calculated by diving total crop output (in kilograms or tonnes) by the area of land used to grow a given crop (in hectares). There are likely to be certain regional and seasonal differences in yield within a given country, however, reported average yields still provide a useful indication of changes in productivity over time and geographical region.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing libraries</span>
+<span class="kn">import</span> <span class="nn">datatable</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">datatable</span> <span class="kn">import</span> <span class="n">f</span><span class="p">,</span><span class="n">by</span><span class="p">,</span><span class="n">count</span><span class="p">,</span><span class="n">update</span><span class="p">,</span><span class="n">sort</span><span class="p">,</span><span class="n">join</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type='text/css'>
+.datatable table.frame { margin-bottom: 0; }
+.datatable table.frame thead { border-bottom: none; }
+.datatable table.frame tr.coltypes td {  color: #FFFFFF;  line-height: 6px;  padding: 0 0.5em;}
+.datatable .boolean { background: #DDDD99; }
+.datatable .object  { background: #565656; }
+.datatable .integer { background: #5D9E5D; }
+.datatable .float   { background: #4040CC; }
+.datatable .string  { background: #CC4040; }
+.datatable .row_index {  background: var(--jp-border-color3);  border-right: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  font-size: 9px;}
+.datatable .frame tr.coltypes .row_index {  background: var(--jp-border-color0);}
+.datatable th:nth-child(2) { padding-left: 12px; }
+.datatable .hellipsis {  color: var(--jp-cell-editor-border-color);}
+.datatable .vellipsis {  background: var(--jp-layout-color0);  color: var(--jp-cell-editor-border-color);}
+.datatable .na {  color: var(--jp-cell-editor-border-color);  font-size: 80%;}
+.datatable .footer { font-size: 9px; }
+.datatable .frame_dimensions {  background: var(--jp-border-color3);  border-top: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  display: inline-block;  opacity: 0.6;  padding: 1px 10px 1px 5px;}
+</style>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datatable options are set to display limit number of rows and datatable frame columns colors are maintained</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">init_styles</span><span class="p">()</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">head_nrows</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">tail_nrows</span><span class="o">=</span><span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type='text/css'>
+.datatable table.frame { margin-bottom: 0; }
+.datatable table.frame thead { border-bottom: none; }
+.datatable table.frame tr.coltypes td {  color: #FFFFFF;  line-height: 6px;  padding: 0 0.5em;}
+.datatable .boolean { background: #DDDD99; }
+.datatable .object  { background: #565656; }
+.datatable .integer { background: #5D9E5D; }
+.datatable .float   { background: #4040CC; }
+.datatable .string  { background: #CC4040; }
+.datatable .row_index {  background: var(--jp-border-color3);  border-right: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  font-size: 9px;}
+.datatable .frame tr.coltypes .row_index {  background: var(--jp-border-color0);}
+.datatable th:nth-child(2) { padding-left: 12px; }
+.datatable .hellipsis {  color: var(--jp-cell-editor-border-color);}
+.datatable .vellipsis {  background: var(--jp-layout-color0);  color: var(--jp-cell-editor-border-color);}
+.datatable .na {  color: var(--jp-cell-editor-border-color);  font-size: 80%;}
+.datatable .footer { font-size: 9px; }
+.datatable .frame_dimensions {  background: var(--jp-border-color3);  border-top: 1px solid var(--jp-border-color0);  color: var(--jp-ui-font-color3);  display: inline-block;  opacity: 0.6;  padding: 1px 10px 1px 5px;}
+</style>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_yields_global_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">fread</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-01/key_crop_yields.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_fields</span> <span class="o">=</span> <span class="n">crop_yields_global_dt</span><span class="o">.</span><span class="n">names</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_fields_clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\s{1,}\([\w\s]+\)&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">crop_fields</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_fields_clean_1</span> <span class="o">=</span> <span class="p">[</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="n">col</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">crop_fields_clean</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_yields_global_dt</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="n">crop_fields_clean_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_yields_global_dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>entity</th><th>code</th><th>year</th><th>wheat</th><th>rice</th><th>maize</th><th>soybeans</th><th>potatoes</th><th>beans</th><th>peas</th><th>cassava</th><th>barley</th><th>cocoa_beans</th><th>bananas</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='integer' title='int32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>Afghanistan</td><td>AFG</td><td>1961</td><td>1.022</td><td>1.519</td><td>1.4</td><td><span class=na>NA</span></td><td>8.6667</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td><td><span class=na>NA</span></td><td>1.08</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>1</td><td>Afghanistan</td><td>AFG</td><td>1962</td><td>0.9735</td><td>1.519</td><td>1.4</td><td><span class=na>NA</span></td><td>7.6667</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td><td><span class=na>NA</span></td><td>1.08</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>2</td><td>Afghanistan</td><td>AFG</td><td>1963</td><td>0.8317</td><td>1.519</td><td>1.426</td><td><span class=na>NA</span></td><td>8.1333</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td><td><span class=na>NA</span></td><td>1.08</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>3</td><td>Afghanistan</td><td>AFG</td><td>1964</td><td>0.951</td><td>1.7273</td><td>1.4257</td><td><span class=na>NA</span></td><td>8.6</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td><td><span class=na>NA</span></td><td>1.0857</td><td><span class=na>NA</span></td><td><span class=na>NA</span></td></tr>
+    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
+    <tr><td class='row_index'>13,071</td><td>Zimbabwe</td><td>ZWE</td><td>2015</td><td>2.0486</td><td>2.2689</td><td>0.5803</td><td>0.9459</td><td>16.936</td><td>0.4145</td><td><span class=na>NA</span></td><td>4.6818</td><td>5.462</td><td><span class=na>NA</span></td><td>7.1862</td></tr>
+    <tr><td class='row_index'>13,072</td><td>Zimbabwe</td><td>ZWE</td><td>2016</td><td>1.9013</td><td>2.2671</td><td>0.4405</td><td>1.1958</td><td>17.0007</td><td>0.3574</td><td><span class=na>NA</span></td><td>4.7117</td><td>5.4727</td><td><span class=na>NA</span></td><td>7.4281</td></tr>
+    <tr><td class='row_index'>13,073</td><td>Zimbabwe</td><td>ZWE</td><td>2017</td><td>1.7542</td><td>2.2656</td><td>0.5589</td><td>1.5139</td><td>17.0545</td><td>0.5316</td><td><span class=na>NA</span></td><td>4.742</td><td>5.4811</td><td><span class=na>NA</span></td><td>7.6618</td></tr>
+    <tr><td class='row_index'>13,074</td><td>Zimbabwe</td><td>ZWE</td><td>2018</td><td>2.001</td><td>2.2641</td><td>0.6131</td><td>1.5</td><td>17.1083</td><td>0.4773</td><td><span class=na>NA</span></td><td>4.7705</td><td>5.4894</td><td><span class=na>NA</span></td><td>7.8955</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>13,075 rows &times; 14 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_yields_global_dt_v1</span> <span class="o">=</span> <span class="n">crop_yields_global_dt</span><span class="p">[:,</span><span class="n">dt</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">:]),</span><span class="n">by</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">entity</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_yields_global_dt_v1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>entity</th><th>wheat</th><th>rice</th><th>maize</th><th>soybeans</th><th>potatoes</th><th>beans</th><th>peas</th><th>cassava</th><th>barley</th><th>cocoa_beans</th><th>bananas</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>Afghanistan</td><td>75.5326</td><td>130.375</td><td>99.0582</td><td>0</td><td>798.419</td><td>0</td><td>0</td><td>0</td><td>68.6434</td><td>0</td><td>0</td></tr>
+    <tr><td class='row_index'>1</td><td>Africa</td><td>93.7614</td><td>120.211</td><td>89.3943</td><td>48.2091</td><td>612.213</td><td>40.3014</td><td>41.4261</td><td>446.23</td><td>57.3945</td><td>22.3873</td><td>434.42</td></tr>
+    <tr><td class='row_index'>2</td><td>Albania</td><td>155.867</td><td>102.656</td><td>213.741</td><td>58.053</td><td>693.955</td><td>63.3469</td><td>0</td><td>0</td><td>114.002</td><td>0</td><td>0</td></tr>
+    <tr><td class='row_index'>3</td><td>Algeria</td><td>54.7813</td><td>131.243</td><td>116.327</td><td>0</td><td>804.96</td><td>33.9203</td><td>29.9066</td><td>0</td><td>51.2693</td><td>0</td><td>419.036</td></tr>
+    <tr><td class='row_index'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td><td class='hellipsis'>&#x22EE;</td></tr>
+    <tr><td class='row_index'>245</td><td>Yemen</td><td>79.2362</td><td>0</td><td>91.706</td><td>0</td><td>701.702</td><td>63.8295</td><td>47.5026</td><td>0</td><td>55.6646</td><td>0</td><td>400.344</td></tr>
+    <tr><td class='row_index'>246</td><td>Yugoslavia</td><td>92.4004</td><td>131.491</td><td>112.283</td><td>52.3622</td><td>268.784</td><td>26.4929</td><td>34.7345</td><td>0</td><td>65.3341</td><td>0</td><td>0</td></tr>
+    <tr><td class='row_index'>247</td><td>Zambia</td><td>257.897</td><td>53.477</td><td>97.0596</td><td>61.2669</td><td>634.596</td><td>0</td><td>0</td><td>349.942</td><td>34.3003</td><td>0</td><td>193.076</td></tr>
+    <tr><td class='row_index'>248</td><td>Zimbabwe</td><td>230.081</td><td>100.996</td><td>69.2479</td><td>93.7791</td><td>883.574</td><td>33.2357</td><td>0</td><td>220.337</td><td>280.046</td><td>0</td><td>303.048</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>249 rows &times; 12 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_fields_clean_1</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;wheat&#39;,
+ &#39;rice&#39;,
+ &#39;maize&#39;,
+ &#39;soybeans&#39;,
+ &#39;potatoes&#39;,
+ &#39;beans&#39;,
+ &#39;peas&#39;,
+ &#39;cassava&#39;,
+ &#39;barley&#39;,
+ &#39;cocoa_beans&#39;,
+ &#39;bananas&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pydt_reshape_wide_to_long</span><span class="p">(</span><span class="n">DT</span><span class="p">,</span><span class="o">*</span><span class="n">measure_vars</span><span class="p">,</span><span class="n">var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">val_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;reshaping datatable from wide columns to long &quot;&quot;&quot;</span>
+    <span class="n">dt_cols</span><span class="o">=</span><span class="p">[</span><span class="o">*</span><span class="n">measure_vars</span><span class="p">]</span>
+    <span class="n">measure_col_dict</span> <span class="o">=</span> <span class="n">DT</span><span class="p">[:,[</span><span class="o">*</span><span class="n">measure_vars</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="n">variables_dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;variable&#39;</span><span class="p">:[],</span><span class="s1">&#39;value&#39;</span><span class="p">:[]}</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">measure_col_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">variables_dict</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span>
+        <span class="n">variables_dict</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">wide_to_long_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">variables_dict</span><span class="p">)</span>
+    <span class="n">removed_cols_dt</span> <span class="o">=</span> <span class="n">DT</span><span class="p">[:,</span><span class="n">f</span><span class="p">[:]</span><span class="o">.</span><span class="n">remove</span><span class="p">([</span> <span class="n">f</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">dt_cols</span><span class="p">])]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="n">non_measures_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">Frame</span><span class="p">({</span><span class="n">k</span><span class="p">:</span><span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dt_cols</span><span class="p">)))))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">removed_cols_dt</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+    
+    <span class="k">if</span> <span class="n">var_name</span> <span class="ow">and</span> <span class="n">val_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">wide_to_long_dt</span><span class="o">.</span><span class="n">names</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;variable&#39;</span><span class="p">:</span><span class="n">var_name</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">:</span><span class="n">val_name</span><span class="p">}</span>
+        
+    <span class="n">wide_to_long_prep_dt</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">cbind</span><span class="p">(</span><span class="n">non_measures_dt</span><span class="p">,</span><span class="n">wide_to_long_dt</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">wide_to_long_prep_dt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_yields_tidy</span> <span class="o">=</span><span class="n">pydt_reshape_wide_to_long</span><span class="p">(</span><span class="n">crop_yields_global_dt_v1</span><span class="p">,</span><span class="s1">&#39;wheat&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;rice&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;maize&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;soybeans&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;potatoes&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;beans&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;peas&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cassava&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;barley&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cocoa_beans&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;bananas&#39;</span><span class="p">,</span>
+<span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;crop&#39;</span><span class="p">,</span><span class="n">val_name</span><span class="o">=</span><span class="s1">&#39;crop_yield&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crop_yields_tidy</span><span class="p">[:,</span><span class="n">dt</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">crop_yield</span><span class="p">),</span><span class="n">by</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">crop</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class='datatable'>
+  <table class='frame'>
+  <thead>
+    <tr class='colnames'><td class='row_index'></td><th>crop</th><th>crop_yield</th></tr>
+    <tr class='coltypes'><td class='row_index'></td><td class='string' title='str32'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td><td class='float' title='float64'>&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;&#x25AA;</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='row_index'>0</td><td>bananas</td><td>135429</td></tr>
+    <tr><td class='row_index'>1</td><td>barley</td><td>15028.4</td></tr>
+    <tr><td class='row_index'>2</td><td>beans</td><td>8699.05</td></tr>
+    <tr><td class='row_index'>3</td><td>cassava</td><td>67169.6</td></tr>
+    <tr><td class='row_index'>4</td><td>cocoa_beans</td><td>1818.91</td></tr>
+    <tr><td class='row_index'>5</td><td>maize</td><td>32585.9</td></tr>
+    <tr><td class='row_index'>6</td><td>peas</td><td>9225.41</td></tr>
+    <tr><td class='row_index'>7</td><td>potatoes</td><td>154224</td></tr>
+    <tr><td class='row_index'>8</td><td>rice</td><td>26783.3</td></tr>
+    <tr><td class='row_index'>9</td><td>soybeans</td><td>8634.52</td></tr>
+    <tr><td class='row_index'>10</td><td>wheat</td><td>19725.2</td></tr>
+  </tbody>
+  </table>
+  <div class='footer'>
+    <div class='frame_dimensions'>11 rows &times; 2 columns</div>
+  </div>
+</div>
+</div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="py_dt_policia.html" title="previous page">Py: Tidy data analysis - Police traffic activity</a>
+    <a class='right-next' id="next-link" href="SO_faqs.html" title="next page">Frequently Asked Questions</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sr.Mallesham Yamulla<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

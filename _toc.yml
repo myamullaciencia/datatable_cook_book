@@ -5,6 +5,7 @@
     - file: py_dt_penguins
     - file: py_dt_policia
     - file: py_dt_global_crop_yields
+    - file: py_dt_amigos
     
 - file: SO_faqs
   sections:

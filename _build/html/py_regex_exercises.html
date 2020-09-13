@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Frequently Asked Questions" href="SO_faqs.html" />
-    <link rel="prev" title="Python Regular expressions part - 1" href="python_regex_part_1.html" />
+    <link rel="prev" title="Python Regular expressions- Intermediate level" href="python_regex_part_1.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -87,7 +87,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="reference internal" href="python_dt_concepts.html">
-   Python and Datatable References
+   Python references
   </a>
   <ul class="current">
    <li class="toctree-l2">
@@ -97,7 +97,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="python_regex_part_1.html">
-     Python Regular expressions part - 1
+     Python Regular expressions- Intermediate level
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -205,16 +205,9 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expressions">
-   1. Expressions
+  <a class="reference internal nav-link" href="#validations-and-search">
+   1. Validations and Search
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#validation">
-     1. Validation
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -235,10 +228,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="expressions">
-<h2>1. Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="validation">
-<h3>1. Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="validations-and-search">
+<h2>1. Validations and Search<a class="headerlink" href="#validations-and-search" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;hola&#39;</span><span class="p">,</span><span class="s1">&#39;holacomoestas&#39;</span><span class="p">))</span>
@@ -449,8 +440,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">five_repeats</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\w)\1*&#39;</span><span class="p">,</span><span class="n">word</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pattern</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">letter</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(.)\1</span><span class="si">{4}</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">word</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -458,9 +448,185 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_number</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b[0-9]+\b&#39;</span><span class="p">,</span><span class="n">num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">five_repeats</span><span class="p">(</span><span class="s1">&#39;MMMMMYAMULLAPPPPP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MMMMM&#39;, &#39;PPPPP&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_abbrevation</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">word_splits</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_splits</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_abbrevation</span><span class="p">(</span><span class="s1">&#39;Hyper Text Markup Language&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;HTML&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_abbrevation</span><span class="p">(</span><span class="s1">&#39;Frequently Asked Questions&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;FAQ&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_hex_color</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
+    <span class="n">busqueda</span> <span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[\#]([0-9a-f]</span><span class="si">{3}</span><span class="s1">|[0-9a-f]</span><span class="si">{6}</span><span class="s1">)$&#39;</span><span class="p">,</span><span class="n">color</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">busqueda</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_hex_color</span><span class="p">(</span><span class="s1">&#39;#decafz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_hex_color</span><span class="p">(</span><span class="s1">&#39;#9f2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_valid_date</span><span class="p">(</span><span class="n">fecha</span><span class="p">):</span>
+    <span class="n">date_reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]</span><span class="si">{4}</span><span class="s1">\-([0][0-9]|1[0-2])\-[0-3]</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">date_reg</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">fecha</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_valid_date</span><span class="p">(</span><span class="s2">&quot;2016-01-02&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_valid_date</span><span class="p">(</span><span class="s2">&quot;1980-30-05&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_valid_date</span><span class="p">(</span><span class="s2">&quot;2016-02-99&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeaters</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">rep_rgx</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b([A-Za-z]+)\1\b&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">word</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">rep_rgx</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">text</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repeaters</span><span class="p">(</span><span class="s1">&#39;cancan REXREX TOMTOM murmur TATA HAND CANCAN&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;cancan&#39;, &#39;REXREX&#39;, &#39;TOMTOM&#39;, &#39;murmur&#39;, &#39;TATA&#39;, &#39;CANCAN&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize_jpeg</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[E|e]&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalize_jpeg</span><span class="p">(</span><span class="s1">&#39;Avatar.JPEG&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Avatar.JPG&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normalize_jpeg</span><span class="p">(</span><span class="s1">&#39;AVATAR.Jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;AVATAR.Jpg&#39;
+</pre></div>
 </div>
 </div>
 </div>
@@ -495,7 +661,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="python_regex_part_1.html" title="previous page">Python Regular expressions part - 1</a>
+    <a class='left-prev' id="prev-link" href="python_regex_part_1.html" title="previous page">Python Regular expressions- Intermediate level</a>
     <a class='right-next' id="next-link" href="SO_faqs.html" title="next page">Frequently Asked Questions</a>
 
     </div>

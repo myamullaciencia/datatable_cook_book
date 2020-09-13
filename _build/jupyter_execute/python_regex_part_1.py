@@ -1,4 +1,4 @@
-# Python Regular expressions part - 1
+# Python Regular expressions- Intermediate level
 
 ### 1 . Introduction
 
@@ -10,7 +10,7 @@ letra = 'espanolesun345'
 
 re.search(r'\s[\w]{2}\s','espanol es lenguage de 5 22 3 ')
 
-text = 'La india esta en 209 posicion en covid 2019  covriance  violencia y hay poblacion de 5000 mil hoy' 
+text = 'La india esta en el segundo posicion en covid 2019  covriance  violencia y hay poblacion de 5000 mil hoy' 
 
 re.search(r'[0-9]{4}',text)
 
@@ -188,3 +188,36 @@ re.search(r'(?<=Mr\.)[\w]+','Mr.Mallesham')
 
 # neg behind
 re.search('(?<!Sr\.)bar', 'Srta.bar')
+
+### 6. String splitting and  substitutes
+
+re.sub(r'[0-9]','*','myamulla234')
+
+re.sub(r'[0-9]','-','ams8910tiu',count=2)
+
+re.sub(r'[\W]','X','Srcie#n%c&a')
+
+re.subn(r'[\s|\,]','_','ciencia datos,intelligencia artificial')
+
+re.split(r'[\s]','ciencia datos intelligencia artificial')
+
+re.split(r'[\W]','#pydatatable $machinelearning & ciencia')
+
+re.split(r'[\W]','#pydatatable $machinelearning & ciencia',maxsplit=3)
+
+### 7. Compiled regex
+
+# a regex pattern to catch an email with only 4 letters of gmail domain
+reg_email = re.compile(r'\b[a-z]{4}\@gmail\.com')
+
+# case - 1
+reg_email.search('mall@gmail.com')
+
+# case - 2
+reg_email.match('otta@gmail.com')
+
+# case - 3
+reg_email.finditer('cien@gmail.com')
+
+# case - 4
+reg_email.fullmatch('tius@gmail.com')

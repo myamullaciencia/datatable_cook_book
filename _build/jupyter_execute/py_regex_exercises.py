@@ -2,9 +2,7 @@
 
 import re
 
-### 1. Expressions
-
-##### 1. Validation
+### 1. Validations and Search 
 
 bool(re.search(r'hola','holacomoestas'))
 
@@ -59,8 +57,50 @@ def get_hexaconsonental(word):
 get_hexaconsonental('jkrtmnp')
 
 def five_repeats(word):
-    pattern = re.findall(r'(\w)\1*',word)
-    return pattern
+    return [ letter.group() for letter in re.finditer(r'(.)\1{4}',word)]
 
 def is_number(num):
-    pattern = re.search(r'')
+    pattern = re.search(r'\b[0-9]+\b',num)
+    return bool(pattern)
+
+five_repeats('MMMMMYAMULLAPPPPP')
+
+def get_abbrevation(text):
+    word_splits = re.split(r'\s',text)
+    return ''.join([ w[0] for w in word_splits])
+
+get_abbrevation('Hyper Text Markup Language')
+
+get_abbrevation('Frequently Asked Questions')
+
+def is_hex_color(color):
+    busqueda =re.search(r'^[\#]([0-9a-f]{3}|[0-9a-f]{6})$',color)
+    return bool(busqueda)
+
+is_hex_color('#decafz')
+
+is_hex_color('#9f2')
+
+def is_valid_date(fecha):
+    date_reg = re.compile(r'[0-9]{4}\-([0][0-9]|1[0-2])\-[0-3]{2}')
+    return bool(date_reg.search(fecha))
+
+is_valid_date("2016-01-02")
+
+is_valid_date("1980-30-05")
+
+is_valid_date("2016-02-99")
+
+def repeaters(text):
+    rep_rgx = re.compile(r'\b([A-Za-z]+)\1\b')
+    return [ word.group() for word in rep_rgx.finditer(text)]
+
+repeaters('cancan REXREX TOMTOM murmur TATA HAND CANCAN')
+
+def normalize_jpeg(text):
+    return re.sub(r'[E|e]','',text)
+
+normalize_jpeg('Avatar.JPEG')
+
+normalize_jpeg('AVATAR.Jpg')
+

@@ -12,6 +12,7 @@
     - file: py_string_and_character_data
     - file: python_regex_part_1
     - file: py_regex_exercises
+    - file: py_morsels/01_count_words
     
 - file: SO_faqs
   sections:

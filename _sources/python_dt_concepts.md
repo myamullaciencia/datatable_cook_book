@@ -1,2 +1,2 @@
-Python and Datatable References
+Python references
 ============================

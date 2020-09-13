@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Regular expressions part - 1 &#8212; (py)datatable cookbook</title>
+    <title>Python Regular expressions- Intermediate level &#8212; (py)datatable cookbook</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -87,7 +87,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="reference internal" href="python_dt_concepts.html">
-   Python and Datatable References
+   Python references
   </a>
   <ul class="current">
    <li class="toctree-l2">
@@ -97,7 +97,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Python Regular expressions part - 1
+     Python Regular expressions- Intermediate level
     </a>
    </li>
    <li class="toctree-l2">
@@ -276,6 +276,16 @@
    5. Lookahead and Lookbehinds
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#string-splitting-and-substitutes">
+   6. String splitting and  substitutes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compiled-regex">
+   7. Compiled regex
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -286,8 +296,8 @@
         
               <div>
                 
-  <div class="section" id="python-regular-expressions-part-1">
-<h1>Python Regular expressions part - 1<a class="headerlink" href="#python-regular-expressions-part-1" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="python-regular-expressions-intermediate-level">
+<h1>Python Regular expressions- Intermediate level<a class="headerlink" href="#python-regular-expressions-intermediate-level" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>1 . Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
@@ -330,7 +340,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;La india esta en 209 posicion en covid 2019  covriance  violencia y hay poblacion de 5000 mil hoy&#39;</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;La india esta en el segundo posicion en covid 2019  covriance  violencia y hay poblacion de 5000 mil hoy&#39;</span> 
 </pre></div>
 </div>
 </div>
@@ -342,7 +352,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;re.Match object; span=(39, 43), match=&#39;2019&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;re.Match object; span=(46, 50), match=&#39;2019&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -354,7 +364,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;re.Match object; span=(18, 21), match=&#39;09 &#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;re.Match object; span=(48, 51), match=&#39;19 &#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -432,7 +442,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39; 209 &#39;, &#39; 2019 &#39;, &#39;  &#39;, &#39; 5000 &#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39; 2019 &#39;, &#39;  &#39;, &#39; 5000 &#39;]
 </pre></div>
 </div>
 </div>
@@ -469,7 +479,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;209&#39;, &#39;2019&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2019&#39;]
 </pre></div>
 </div>
 </div>
@@ -485,7 +495,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;209&#39;, &#39;2019&#39;, &#39;5000&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2019&#39;, &#39;5000&#39;]
 </pre></div>
 </div>
 </div>
@@ -497,7 +507,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;india&#39;, &#39;posic&#39;, &#39;covid&#39;, &#39;covri&#39;, &#39;viole&#39;, &#39;pobla&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;india&#39;, &#39;segun&#39;, &#39;posic&#39;, &#39;covid&#39;, &#39;covri&#39;, &#39;viole&#39;, &#39;pobla&#39;]
 </pre></div>
 </div>
 </div>
@@ -517,7 +527,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39; 20&#39;, &#39; 20&#39;, &#39; 50&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39; 20&#39;, &#39; 50&#39;]
 </pre></div>
 </div>
 </div>
@@ -695,7 +705,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;209&#39;, &#39;201&#39;, &#39;500&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;201&#39;, &#39;500&#39;]
 </pre></div>
 </div>
 </div>
@@ -1071,6 +1081,156 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;re.Match object; span=(5, 8), match=&#39;bar&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="string-splitting-and-substitutes">
+<h2>6. String splitting and  substitutes<a class="headerlink" href="#string-splitting-and-substitutes" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]&#39;</span><span class="p">,</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="s1">&#39;myamulla234&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;myamulla***&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;ams8910tiu&#39;</span><span class="p">,</span><span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ams--10tiu&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\W]&#39;</span><span class="p">,</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="s1">&#39;Srcie#n</span><span class="si">%c</span><span class="s1">&amp;a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;SrcieXnXcXa&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\s|\,]&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39;ciencia datos,intelligencia artificial&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;ciencia_datos_intelligencia_artificial&#39;, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\s]&#39;</span><span class="p">,</span><span class="s1">&#39;ciencia datos intelligencia artificial&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ciencia&#39;, &#39;datos&#39;, &#39;intelligencia&#39;, &#39;artificial&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\W]&#39;</span><span class="p">,</span><span class="s1">&#39;#pydatatable $machinelearning &amp; ciencia&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;&#39;, &#39;pydatatable&#39;, &#39;&#39;, &#39;machinelearning&#39;, &#39;&#39;, &#39;&#39;, &#39;ciencia&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\W]&#39;</span><span class="p">,</span><span class="s1">&#39;#pydatatable $machinelearning &amp; ciencia&#39;</span><span class="p">,</span><span class="n">maxsplit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;&#39;, &#39;pydatatable&#39;, &#39;&#39;, &#39;machinelearning &amp; ciencia&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compiled-regex">
+<h2>7. Compiled regex<a class="headerlink" href="#compiled-regex" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a regex pattern to catch an email with only 4 letters of gmail domain</span>
+<span class="n">reg_email</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b[a-z]</span><span class="si">{4}</span><span class="s1">\@gmail\.com&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case - 1</span>
+<span class="n">reg_email</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;mall@gmail.com&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;re.Match object; span=(0, 14), match=&#39;mall@gmail.com&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case - 2</span>
+<span class="n">reg_email</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;otta@gmail.com&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;re.Match object; span=(0, 14), match=&#39;otta@gmail.com&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case - 3</span>
+<span class="n">reg_email</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s1">&#39;cien@gmail.com&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;callable_iterator at 0x7fa8946ecbb0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case - 4</span>
+<span class="n">reg_email</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s1">&#39;tius@gmail.com&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;re.Match object; span=(0, 14), match=&#39;tius@gmail.com&#39;&gt;
 </pre></div>
 </div>
 </div>

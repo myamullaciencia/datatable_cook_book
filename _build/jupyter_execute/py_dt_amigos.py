@@ -137,29 +137,7 @@ amigos_todo_dt = dt.Frame( amigos_info_df.join(amigos_df.set_index(['season','ep
                                                on=['season','episode']) 
                          )
 
-sam_dt = amigos_todo_dt[-10:,:]
+amigos_todo_dt
 
-sam_dt['season'] = str
-
-sam_dt['episode'] = str
-
-ex_list = sam_dt[:,f[:3]].to_list()
-
-ex_list
-
-tes_list = list()
-for elem in ex_list:
-    n=5
-    i=0
-    while i < len(elem):
-        tes_list.append(elem[i])
-        i+=1
-
-'-'.join(tes_list)
-
-t = list()
-for ex in ex_list:
-    t.append(ex[9])
-
-t
+amigos_todo_dt[~dt.isna(f.speaker),:]
 

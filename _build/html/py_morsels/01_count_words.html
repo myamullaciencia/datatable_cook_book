@@ -1,0 +1,439 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Py: Exercise - Count words &#8212; (py)datatable cookbook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Frequently Asked Questions" href="../SO_faqs.html" />
+    <link rel="prev" title="Python Regular expressions exercises" href="../py_regex_exercises.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/py_datatable_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">(py)datatable cookbook</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Data Wrangling using py-datatable
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ucases.html">
+   Exploratory Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="../python_dt_concepts.html">
+   Python references
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../py_string_and_character_data.html">
+     Python String and Character data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_regex_part_1.html">
+     Python Regular expressions- Intermediate level
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../py_regex_exercises.html">
+     Python Regular expressions exercises
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Py: Exercise - Count words
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../SO_faqs.html">
+   Frequently Asked Questions
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/py_morsels/01_count_words.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/py_morsels/01_count_words.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/py_morsels/01_count_words.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="py-exercise-count-words">
+<h1>Py: Exercise - Count words<a class="headerlink" href="#py-exercise-count-words" title="Permalink to this headline">¶</a></h1>
+<p>We want you to write a function that accepts a string and returns a mapping (a dictionary or dictionary-like structure) that has words as the keys and the number of times each word was seen as the values.</p>
+<ol class="simple">
+<li><p>As a bonus, make sure the function works well with mixed case words</p></li>
+<li><p>For even more of a bonus try to get the function to ignore punctuation outside of words.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case 1</span>
+<span class="k">def</span> <span class="nf">count_words_case_1</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text_split</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">word_counts</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">text_split</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_counts</span><span class="p">:</span>
+            <span class="n">word_counts</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">word_counts</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">word_counts</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_words_case_1</span><span class="p">(</span><span class="s1">&#39;real python course is a real course&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;real&#39;: 2, &#39;python&#39;: 1, &#39;course&#39;: 2, &#39;is&#39;: 1, &#39;a&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case 2</span>
+<span class="k">def</span> <span class="nf">count_words_case_2</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text_split</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">word_counts</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">text_split</span><span class="p">:</span>
+        <span class="n">word_counts</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">word_counts</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">word_counts</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_words_case_2</span><span class="p">(</span><span class="s1">&#39;pydatatable is a great data manipulation tool, pydatatable is built based on r datatable&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;pydatatable&#39;: 2,
+ &#39;is&#39;: 2,
+ &#39;a&#39;: 1,
+ &#39;great&#39;: 1,
+ &#39;data&#39;: 1,
+ &#39;manipulation&#39;: 1,
+ &#39;tool,&#39;: 1,
+ &#39;built&#39;: 1,
+ &#39;based&#39;: 1,
+ &#39;on&#39;: 1,
+ &#39;r&#39;: 1,
+ &#39;datatable&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case 3</span>
+<span class="k">def</span> <span class="nf">count_words_case_3</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text_split</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">text_split</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_words_case_3</span><span class="p">(</span><span class="s1">&#39;Python and R are great tools for data science, tools are always tools&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Python&#39;: 1,
+ &#39;and&#39;: 1,
+ &#39;R&#39;: 1,
+ &#39;are&#39;: 2,
+ &#39;great&#39;: 1,
+ &#39;tools&#39;: 3,
+ &#39;for&#39;: 1,
+ &#39;data&#39;: 1,
+ &#39;science,&#39;: 1,
+ &#39;always&#39;: 1}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case 4</span>
+<span class="k">def</span> <span class="nf">count_words_case_4</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text_split</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">text_small</span> <span class="o">=</span> <span class="p">[</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text_split</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">text_small</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_words_case_4</span><span class="p">(</span><span class="s1">&#39;Python R python r JAVA&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({&#39;python&#39;: 2, &#39;r&#39;: 2, &#39;java&#39;: 1})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># case 5</span>
+<span class="k">def</span> <span class="nf">count_words_case_5</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text_split</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b[\w\-]+\b&#39;</span><span class="p">,</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">text_split</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_words_case_5</span><span class="p">(</span><span class="s1">&#39;Dear Students,py-data US will be hosted on-line in 2020&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({&#39;dear&#39;: 1,
+         &#39;students&#39;: 1,
+         &#39;py-data&#39;: 1,
+         &#39;us&#39;: 1,
+         &#39;will&#39;: 1,
+         &#39;be&#39;: 1,
+         &#39;hosted&#39;: 1,
+         &#39;on-line&#39;: 1,
+         &#39;in&#39;: 1,
+         &#39;2020&#39;: 1})
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./py_morsels"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../py_regex_exercises.html" title="previous page">Python Regular expressions exercises</a>
+    <a class='right-next' id="next-link" href="../SO_faqs.html" title="next page">Frequently Asked Questions</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sr.Mallesham Yamulla<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
